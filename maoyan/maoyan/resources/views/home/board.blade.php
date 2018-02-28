@@ -1,4 +1,4 @@
-@extends('home/layout')
+@extends('home/layouts/layout')
 $section('css')
 <link rel="stylesheet" href="/home/css/board-index.92a06072.css"/>
 @show

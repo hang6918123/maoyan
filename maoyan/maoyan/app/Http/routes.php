@@ -26,7 +26,16 @@ Route::get('/board', function () {
 Route::get('/news', function () {
     return view('home/news');
 });
-Route::get('login', function () {
+Route::get('/login', function () {
     return view('home/login');
 });
-Route::controller('/conde','Home\UserController');
+Route::get('/admin/index', function () {
+    return view('admin/index');
+});
+Route::get('/admin/video/list', function () {
+    return view('admin/vlist');
+});
+Route::get('/admin/video/info', function () {
+    return view('admin/vinfo');
+});
+// Route::controller('/conde','Home\UserController');
