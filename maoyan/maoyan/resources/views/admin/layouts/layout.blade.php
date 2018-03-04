@@ -18,7 +18,9 @@
 <link rel="stylesheet" type="text/css" href="/admin/bootstrap/css/bootstrap.min.css" media="screen">
 <link rel="stylesheet" type="text/css" href="/admin/css/fonts/ptsans/stylesheet.css" media="screen">
 <link rel="stylesheet" type="text/css" href="/admin/css/fonts/icomoon/style.css" media="screen">
+@section('css')
 
+@show
 <link rel="stylesheet" type="text/css" href="/admin/css/mws-style.css" media="screen">
 <link rel="stylesheet" type="text/css" href="/admin/css/icons/icol16.css" media="screen">
 <link rel="stylesheet" type="text/css" href="/admin/css/icons/icol32.css" media="screen">
@@ -34,7 +36,7 @@
 <link rel="stylesheet" type="text/css" href="/admin/css/mws-theme.css" media="screen">
 <link rel="stylesheet" type="text/css" href="/admin/css/themer.css" media="screen">
 
-<title>MWS Admin - Files</title>
+<title>{{Config::get('app.title')}}</title>
 
 </head>
 
@@ -112,15 +114,16 @@
                     <li>
                         <a href="#"><i class="icon-home"></i>影院管理</a>
                         <ul class="closed">
-                            <li><a href="/admin/video/list">影院列表</a></li>
+                            <li><a href="/admin/video">影院列表</a></li>
                             <li><a href="form_elements.html">添加影院</a></li>
                         </ul>
                     </li>
                     <li>
                         <a href="#"><i class="icon-facetime-video"></i>影片管理</a>
                         <ul class="closed">
-                            <li><a href="/admin/video/list">影片列表</a></li>
-                            <li><a href="form_elements.html">添加影片</a></li>
+                            <li><a href="/admin/video/create">添加影片</a></li>
+                            <li><a href="/admin/video">影片列表</a></li>
+                            <li><a href="/admin/vshow">影片回收站</a></li>
                         </ul>
                     </li>
                     <li>
@@ -153,20 +156,26 @@
         
         	<!-- Inner Container Start -->
             <div class="container">
-                @if(false)
+                @if (count($errors) > 0)
+                    <div class="mws-form-message error">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+                @if(session('serror'))
                 <div class="mws-form-message error">
-                                This is an error message
                                 <ul>
-                                    <li>You are too fast</li>
-                                    <li>You are too slow</li>
+                                   <li>{{session('serror')}}</li>
                                 </ul>
                             </div>
-                @else
+                @endif
+                @if(session('success'))
                             <div class="mws-form-message success">
-                                This is a success message
                                 <ol>
-                                    <li>You are too good</li>
-                                    <li>You are too smart</li>
+                                    <li>{{session('success')}}</li>
                                 </ol>
                             </div>
                 @endif
@@ -217,6 +226,9 @@
 
     <!-- Demo Scripts (remove if not needed) -->
     <script src="/admin/js/demo/demo.files.js"></script>
+    @section('js')
+
+    @show
 
 </body>
 </html>

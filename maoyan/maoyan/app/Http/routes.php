@@ -10,32 +10,18 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-
-Route::get('/', function () {
-    return view('home/index');
-});
-Route::get('/films', function () {
-    return view('home/films');
-});
-Route::get('/cinemas', function () {
-    return view('home/cinemas');
-});
-Route::get('/board', function () {
-    return view('home/board');
-});
-Route::get('/news', function () {
-    return view('home/news');
-});
-Route::get('/login', function () {
-    return view('home/login');
-});
+// 后台主页路由
 Route::get('/admin/index', function () {
     return view('admin/index');
 });
-Route::get('/admin/video/list', function () {
-    return view('admin/vlist');
-});
-Route::get('/admin/video/info', function () {
-    return view('admin/vinfo');
-});
-// Route::controller('/conde','Home\UserController');
+//后台影片管理路由
+
+Route::get('/admin/recycle/{id}','Admin\VideosController@recycle');
+Route::post('/admin/dele/{id}','Admin\VideosController@dele');
+Route::get('/admin/vshow','Admin\VideosController@vshow');
+Route::get('/admin/showv/{id}','Admin\VideosController@showv');
+Route::resource('/admin/video','Admin\VideosController');
+
+
+//前台路由主页
+Route::controller('/','Home\IndexController');
