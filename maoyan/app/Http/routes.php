@@ -12,7 +12,31 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home/index');
 });
-
-Route::controller('/admin','Admin\UserController');
+Route::get('/films', function () {
+    return view('home/films');
+});
+Route::get('/cinemas', function () {
+    return view('home/cinemas');
+});
+Route::get('/board', function () {
+    return view('home/board');
+});
+Route::get('/news', function () {
+    return view('home/news');
+});
+Route::get('/login', function () {
+    return view('home/login');
+});
+Route::get('/admin/index', function () {
+    return view('admin/index');
+});
+Route::get('/admin/video/list', function () {
+    return view('admin/vlist');
+});
+Route::get('/admin/video/info', function () {
+    return view('admin/vinfo');
+});
+// Route::controller('/conde','Home\UserController');
+Route::controller('admin/cineman','admin\CinemanController');
