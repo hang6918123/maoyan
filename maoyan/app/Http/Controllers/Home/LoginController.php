@@ -17,6 +17,9 @@ class LoginController extends Controller
      */
     public function getIndex()
     {
+        if(session()->has('home')){
+            return redirect('user');
+        }
         return view('home.login');
     }
 
@@ -45,7 +48,7 @@ class LoginController extends Controller
             $request->flashOnly('mobile');
             return redirect()->back()->withErrors($validator);
         }
-        
+
         $data = Users::where('phone',$request->mobile)->first();
         if($data == null){
         	$str = "QWERTYUIOPASDFGHJKLZXCVBNM1234567890qwertyuiopasdfghjklzxcvbnm";
@@ -56,16 +59,23 @@ class LoginController extends Controller
         	$user->phone = $phone;
         	$res = $user->save();
         	if($res > 0){
-        		session(['home' => true,'username' => $name,'phone' => $phone]);
-        		return redirect('/index');
+                session()->put('home',true);
+        		session()->put('user',['name' => $name,'phone' => $phone,'photo' => 'default.jpg']);
+        		return redirect('/user');
         	} else {
         		$request->flashOnly('mobile');
         		return redirect()->back()->withErrors(['登陆失败']);
         	}
 
         }
-        session(['home' => true,'username' => $data->name,'phone' => $data->phone]);
-        return redirect('/index');
+        if($data->state == 1){
+            $request->flashOnly('mobile');
+            return redirect()->back()->withErrors(['此手机号已被禁用']);
+        }
+        
+        session()->put('home',true);
+        session()->put('user',['name' => $data->name,'phone' => $data->phone,'photo' => $data->photo]);
+        return redirect('/user');
 
     }
 

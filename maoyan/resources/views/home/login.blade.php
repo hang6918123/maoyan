@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,13 +7,13 @@
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
     <meta name="keywords" content="美团,登录,注册,美团登录,美团注册">
     <title>登录 | 猫眼电影</title>
-    <link rel="stylesheet" href="/css/home/login.css">
-    <link rel="icon" href="/images/home/maoyan.ico" type="image/x-icon"/> 
+    <link rel="stylesheet" href="/home/css/login.css">
+    <link rel="icon" href="/home/images/maoyan.ico" type="image/x-icon"/> 
 </head>
 
 <body class="pg-unitive-login theme--maoyan">
 	<header class="header cf">
-		<a class="site-logo" href="http://www.maoyan.com">猫眼电影</a>
+		<a class="site-logo" href="http://www.zhouyujituan.com">猫眼电影</a>
 	</header>
 	@if (count($errors) > 0)
 		<div class="common-tip sysmsgw">
@@ -25,7 +24,7 @@
     <div class="site-body-wrapper">
 		<div class="site-body cf">
 			<div class="promotion-banner">
-				<img src="/images/home/login_content.png" width="480" height="370" alt="猫眼电影"/>
+				<img src="/home/images/login_content.png" width="480" height="370" alt="猫眼电影"/>
 			</div>
 			<div class="login-section">
 				<form id="J-mobile-form" action="/login/judge" method="POST" class="form form--stack J-wwwtracker-form">
@@ -84,8 +83,8 @@
 	</footer>
 </body>
 </html>
-<script src="/js/public/jquery-3.3.1.min.js"></script>
-<script src="/js/public/laravel-sms.js"></script>
+<script src="/public/js/jquery-3.3.1.min.js"></script>
+<script src="/public/js/laravel-sms.js"></script>
 <script>
 	var phone_res = /^1[34578]\d{9}$/;
 	$('#J-verify-btn').sms({
