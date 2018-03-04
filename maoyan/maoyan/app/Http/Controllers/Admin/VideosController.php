@@ -190,12 +190,12 @@ class VideosController extends Controller
         $state = $request->input('state');
         $oldpho = $request->input('oldpho');
         if(empty($_FILES['photo'])){
-            $up = new Upload('photo',public_path().'/upload/');
+            $up = new Upload('photo',public_path().'/upload/videos/');
             $up -> run();
             if ($up->error == null) {
                     $photo = $up->_desName;
-                    if(!empty($oldpho && is_file(public_path().'/upload/'.$oldpho))){
-                        unlink(public_path().'/upload/'.$oldpho);
+                    if(!empty($oldpho && is_file(public_path().'/upload/videos/'.$oldpho))){
+                        unlink(public_path().'/upload/videos/'.$oldpho);
                     }
                 } else {
             
@@ -236,8 +236,8 @@ class VideosController extends Controller
         if($videos == 0){
             return back()->with('serror', '删除失败');
         };
-         if(is_file(public_path().'/upload/'.$photo)){
-            unlink(public_path().'/upload/'.$photo);
+         if(is_file(public_path().'/upload/videos/'.$photo)){
+            unlink(public_path().'/upload/videos/'.$photo);
         }
         return back()->with('success', '删除成功');
     }
@@ -286,8 +286,8 @@ class VideosController extends Controller
          if($videos == 0){
             return back()->with('serror', '删除失败');
         }
-        if(is_file(public_path().'/upload/'.$photo)){
-            unlink(public_path().'/upload/'.$photo);
+        if(is_file(public_path().'/upload/videos/'.$photo)){
+            unlink(public_path().'/upload/videos/'.$photo);
         }
         return back()->with('success', '删除成功');
     }

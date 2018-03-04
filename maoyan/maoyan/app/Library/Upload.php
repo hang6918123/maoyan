@@ -19,7 +19,7 @@ class Upload
 	private $_file;//具体的$_FILES[xxx]
 	public $error = null;//存错误
 	
-	public function __construct($file, $desDir= '/upload', $allowType=['image/jpeg', 'image/png', ['image/gif']], $allowSize=1024*1024)
+	public function __construct($file, $desDir= '/upload/videos/', $allowType=['image/jpeg', 'image/png', ['image/gif']], $allowSize=1024*1024)
 	{
 		$this->_file = $_FILES[$file];
 		$this->_desDir = $desDir;
