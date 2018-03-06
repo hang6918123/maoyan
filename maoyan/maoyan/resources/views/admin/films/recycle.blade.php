@@ -5,10 +5,10 @@
 @section('main')
 <div class="mws-panel grid_8">
                 	<div class="mws-panel-header">
-                    	<span><i class="icon-table"></i>影片列表</span>
+                    	<span><i class="icon-table"></i>{{$title}}</span>
                     </div>
                     <div class="mws-panel-body no-padding">
-                        <form action="/admin/video/" method="get" >
+                        <form action="/admin/recycle/" method="get" >
                         <div id="DataTables_Table_1_wrapper" class="dataTables_wrapper" role="grid"><div id="DataTables_Table_1_length" class="dataTables_length"><label>单页显示<select size="1" name="Table_length" aria-controls="DataTables_Table_1"><option @if($length==10)
                                 selected 
                             @endif value="10">10</option>
@@ -31,15 +31,13 @@
                                     <td class=" ">{{$v['state']}}</td>
                                     <td class=" ">
                                         <a href="/admin/video/{{$v['id']}}" class="btn  btn-small">
-                                            <i title="查看详情" class="icon-zoom-in"></i></a> 
-                                            <a href="/admin/recycle/{{$v['id']}}" class="btn  btn-small" title="放入回收站" btn-small"><i class="icon-arrow-down"></i></a>
-                                            <a title="修改信息" href="/admin/video/{{$v['id']}}/edit"  class="btn btn-small"><i class="icon-pencil"></i></a> 
+                                            <i title="查看详情" class="icon-file-openoffice"></i></a> 
+                                            <a href="/admin/showv/{{$v['id']}}" class="btn  btn-small" title="恢复" btn-small"><i class="icon-ok"></i></a>
+                                             
                                         <span class="btn-group">
-                                            <form action="/admin/video/{{$v['id']}}" method="post" id="subform">
+                                            <form action="/admin/dele/{{$v['id']}}" method="post" id="subform">
                                                 {{csrf_field()}}
-                                                {{method_field('DELETE')}}
-                                                <input type="hidden" name="id" value="{{$v['id']}}">
-                                               <button href="javascript:;" title="删除电影" onclick="document.getElementById('subform').submit();" class="btn btn-small"><i class="icon-trash"></i></button>
+                                               <button href="javascript:;" title="删除电影" onclick="return confirm('确定删除');document.getElementById('subform').submit();" class="btn btn-small"><i class="icon-trash"></i></button>
                                                 
                                             </form>
                                         </span>

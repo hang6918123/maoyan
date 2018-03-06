@@ -9,23 +9,22 @@
 
                     <div class="mws-panel-body no-padding">
                          <form class="mws-form" id="art_form" action="/admin/video/{{$data['id']}}" method="POST" enctype="multipart/form-data">
-                              {{csrf_field()}}
-                              {{method_field('PUT')}}
-                              <input type="hidden" name="oldpho" value="{{$data['photo']}}">
+                            
+                              
                               <div class="mws-form-inline">
                                    <div class="mws-form-row">
                                         <label class="mws-form-label">影片名</label>
                                         <div class="mws-form-item">
-                                             <input type="text" name="name" class="small" value="{{$data['name']}}">
+                                             <input type="text" name="name" class="small" value="{{$data['name']}}" class="form-control"  readonly>
                                         </div>
                                    </div>
                                    <div class="mws-form-row">
                                         <label class="mws-form-label">影片类型</label>
                                         <div class="mws-form-item clearfix">
-                                             <ul class="mws-form-list inline">
+                                              <ul class="mws-form-list inline">
                                                   @for($a=0;$a<count(vtype());$a++)
-                                                  <li><input type="checkbox" name="type[]" value="{{vtype()[$a]}}"  
-                                                  @foreach($type as $k=>$v) @if($v == vtype()[$a])  checked @endif @endforeach   ><label>{{vtype()[$a]}}</label></li>
+                                                    
+                                                  @foreach($type as $k=>$v) @if($v == vtype()[$a]) <li><input type="checkbox" name="type[]" value="{{vtype()[$a]}}" checked  ><label>{{vtype()[$a]}}</label></li> @endif @endforeach  
                                                   @endfor
                                              </ul>
                                         </div>
@@ -34,57 +33,55 @@
                                         <label class="mws-form-label">上映地区</label>
                                         <div class="mws-form-item">
                                              <select class="small" name="region">
-                                                  <option value="0">-------请选择-------</option>
                                                   @for($a=0;$a<count(vregion());$a++)
-                                                  <option value="{{vregion()[$a]}}" @if( $data['region'] == vregion()[$a]) selected @endif)>{{vregion()[$a]}}</option>
-                                                  @endfor
+                                                   @if( $data['region'] == vregion()[$a]) <option value="{{vregion()[$a]}}" selected )>{{vregion()[$a]}}</option>
+                                                 @endif @endfor
                                              </select>
                                         </div>
                                    </div>
-                                   <div class="mws-form-row">
+                                    <div class="mws-form-row">
                                         <label class="mws-form-label">电影简介</label>
                                         <div class="mws-form-item">
-                                             <textarea rows="" name="content" cols="" class="large">{{$data['content']}}</textarea>
+                                             <textarea rows="" readonly value="{{$data['content']}}" cols="" class="small form-control">{{$data['content']}}</textarea>
                                         </div>
                                    </div>
+                                   
                                    <div class="mws-form-row">
                                         <label class="mws-form-label">上映时间</label>
                                         <div class="mws-form-item">
-                                             <select name="year1" id="y"></select>
-                                             <select name="month1" id="m"></select>
-                                             <select name="day1" id="d"></select>               
+                                             <select name="year1" > 
+                                                       <option value="{{$year[0]}}" class="form-control" readonly>{{$year[0]}}年</option>
+                                             </select>
+                                             <select name="month1">
+                                                  
+                                                       <option value="{{$year[1]}}" class="form-control" readonly>{{$year[1]}}月</option>
+                                                  
+                                             </select>
+                                             <select name="day1">
+                                                      <option value="{{$year[2]}}" class="form-control" readonly>{{$year[2]}}</option>
+
+                                             </select>               
                                         </div>
                                    </div>
                                    <div class="mws-form-row">
                                         <label class="mws-form-label">语言版本</label>
                                         <div class="mws-form-item">
                                              <select class="small" name="language">
-                                                  <option value="0">-------请选择-------</option>
-                                                  @for($a=0;$a<count(vlanguage());$a++)
-                                                  <option value="{{vlanguage()[$a]}}" @if( $data['language'] == vlanguage()[$a]) selected @endif>{{vlanguage()[$a]}}</option>
-                                                  @endfor
+                                                  <option value="" class="form-control" readonly>{{$data['language']}}</option>
                                              </select>
                                         </div>
                                    </div>
                                    <div class="mws-form-row">
                                         <label class="mws-form-label">影片时长 (单位：秒)</label>
                                         <div class="mws-form-item">
-                                             <input type="number" class="small" name="time" value="{{$data['time']}}">
+                                             <input class="form-control" type="text" readonly value="{{$data['time']}}">
                                         </div>
                                    </div>
-                                   <div class="mws-form-row">
-                                        <label class="mws-form-label">影片封面</label>
-                                        <div class="mws-form-item">
-                                             <div style="width:300px;">
-                                             <input type="file"  id="file_upload" name="photo"  accept="image/*">
-                                             </div>
-                                        </div>
-                                    </div>
                                     <div class="mws-form-row">
-                                        <label class="mws-form-label">已有封面</label>
+                                        <label class="mws-form-label">影片封面</label>
                                         <div class="mws-form-item clearfix">
                                              <ul class="mws-form-list inline">
-                                                  <img src="/upload/{{$data['photo']}}" alt="" width="200">
+                                                  <img src="/upload/videos/{{$data['photo']}}" alt="" width="200">
                                              </ul>
                                         </div>
                                    </div>
@@ -92,29 +89,25 @@
                                         <label class="mws-form-label">影片状态</label>
                                         <div class="mws-form-item clearfix">
                                              <ul class="mws-form-list inline">
-                                                  <li><input type="radio" name="state" value="0" @if($data['state']==0) checked @endif> <label>停止售票</label></li>
-                                                  <li><input type="radio" name="state" value="1" @if($data['state']==1) checked @endif> <label>售票</label></li>
-                                                  <li><input type="radio" name="state" value="2" @if($data['state']==2) checked @endif> <label>预售</label></li>
                                                   <li>
+                                                       @if($data['state']==1)
+                                                            <input type="radio" name="state" value="0"  checked  ><label>停止售票</label>
+                                                       @elseif($data['state']==1)
+                                                       <input type="radio" name="state" value="1" checked> <label>售票</label>
+                                                       @elseif($data['state']==2)
+                                                       <input type="radio" name="state" value="2" checked> <label>预售</label>
+                                                       @endif
+                                                  </li>
+                                                  
                                              </ul>
                                         </div>
                                    </div>
                               </div>
                               <div class="mws-button-row">
-                                   <input type="submit" value="修改" class="btn btn-success">
-                                   <input type="reset" value="重置" class="btn ">
                               </div>
                          </form>
                     </div>         
                 </div>
                 <div class="date-picker userexinfo-form-section"></div>
 <img src="" id="img1" alt="">
-@endsection
-@section('js')
-
-<script>
-     // 年月日三级联动
-     new YMDselect('year1','month1','day1');
-     YMDselect.SetM(2)
-</script>
 @endsection

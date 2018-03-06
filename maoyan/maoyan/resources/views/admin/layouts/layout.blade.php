@@ -107,8 +107,7 @@
                     <li>
                         <a href="#"><i class="icon-file"></i>订单管理</a>
                         <ul class="closed">
-                            <li><a href="form_layouts.html">订单列表</a></li>
-                            <li><a href="form_elements.html">查询订单</a></li>
+                            <li><a href="/admin/orders">订单列表</a></li>
                         </ul>
                     </li>
                     <li>

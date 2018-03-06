@@ -43,7 +43,7 @@ class VideosController extends Controller
             //查询数据库记录
            $data = $videos->paginate($length);
         }
-        return view('admin/vlist',['title'=>'影片列表','data'=>$data,'length'=>$length,'search'=>$search]);
+        return view('admin/films/vlist',['title'=>'影片列表','data'=>$data,'length'=>$length,'search'=>$search]);
     }
 
      /**
@@ -54,7 +54,7 @@ class VideosController extends Controller
     public function create()
     {
         //
-        return view('admin/add',['title'=>'添加影片']);
+        return view('admin/films/add',['title'=>'添加影片']);
     }
 
     /**
@@ -74,7 +74,8 @@ class VideosController extends Controller
         $time = $request->input('time');
         $content = $request->input('content');
         $state = $request->input('state');
-        $up = new Upload('photo',public_path().'/upload/');
+        // dd($request->all());
+        $up = new Upload('photo',public_path().'/upload/videos/');
         $up -> run();
         if ($up->error == null) {
                 $photo = $up->_desName;
@@ -117,7 +118,7 @@ class VideosController extends Controller
         }
         $year = explode('-',$data['years']);
         $type = explode('-',$data['type']);
-        return view('admin/vinfo',['title'=>$title,'data'=>$data,'year'=>$year,'type'=>$type]);
+        return view('admin/films/vinfo',['title'=>$title,'data'=>$data,'year'=>$year,'type'=>$type]);
     }
 
     /**
@@ -133,7 +134,7 @@ class VideosController extends Controller
         $year = explode('-',$data['years']);
        $type = explode('-',$data['type']);
 
-        return view('admin/vedit',['title'=>'影片修改信息表','data'=>$data,'year'=>$year,'type'=>$type]);
+        return view('admin/films/vedit',['title'=>'影片修改信息表','data'=>$data,'year'=>$year,'type'=>$type]);
     }
 
     /**
@@ -152,9 +153,6 @@ class VideosController extends Controller
             'type' => 'required',
             'content' => 'required',
             'region' => 'regex:/\W/',
-            'year1' => 'regex:/^[1-9]/|numeric',
-            'month1' => 'regex:/^[1-9]/|numeric',
-            'day1' => 'regex:/^[1-9]/|numeric',
             'language' => 'regex:/\W/',
             'time' => 'required|numeric|min:5400',          //影片时间不能为空,数值型,不能小于5400
             'state' => 'between:0,3',
@@ -166,9 +164,6 @@ class VideosController extends Controller
             'region.regex'  => '电影上映地区必选',
             'year1.regex'  => '电影上映时间年必选',
             'year1.numeric'  => '电影上映时间年必须为数字',
-            'month1.regex'  => '电影上映时间月必选',
-            'month1.numeric'  => '电影上映时间月必须为数字',
-            'day1.regex'  => '电影上映时间日必选',
             'day1.numeric'  => '电影上映时间日必须为数字',
             'language.regex'  => '电影语言版本必选',
             'time.required'  => '电影时长必填',
@@ -183,13 +178,18 @@ class VideosController extends Controller
         $name = $request->input('name');
         $type = implode('-',$request->input('type'));
         $region = $request->input('region');
-        $years = $request->input('year1').'-'.$request->input('month1').'-'.$request->input('day1');
         $language = $request->input('language');
         $content = $request->input('content');
         $time = $request->input('time');
+        if(empty($request->input('year1')) && empty($request->input('month1')) && empty($request->input('day1'))){
+            $years = $request->input('years');
+        }else{
+        $years = $request->input('year1').'-'.$request->input('month1').'-'.$request->input('day1');
+            
+        }
         $state = $request->input('state');
         $oldpho = $request->input('oldpho');
-        if(empty($_FILES['photo'])){
+        if($_FILES['photo']['error']!=4){
             $up = new Upload('photo',public_path().'/upload/videos/');
             $up -> run();
             if ($up->error == null) {
@@ -267,7 +267,7 @@ class VideosController extends Controller
             //查询数据库记录
            $data = $videos->paginate($length);
         }
-        return view('/admin/recycle',['title'=>'影片回收站','data'=>$data,'length'=>$length,'search'=>$search]);
+        return view('/admin/films/recycle',['title'=>'影片回收站','data'=>$data,'length'=>$length,'search'=>$search]);
     }
 
     public function showv($id){
