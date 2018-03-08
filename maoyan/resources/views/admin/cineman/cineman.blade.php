@@ -50,31 +50,39 @@
                                 <table class="mws-datatable-fn mws-table dataTable" id="DataTables_Table_1" aria-describedby="DataTables_Table_1_info">
                             <thead>
                                 <tr role="row">
-                                    <th role="columnheader" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 60px;">影院ID</th>
+                                    <th role="columnheader" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 20px;">影院ID</th>
                                     <th role="columnheader" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 100px;">影院名称</th>
+                                    <th role="columnheader" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 20px;">普通厅数量</th>
+                                    <th role="columnheader" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 40px;">特殊厅</th>
 
                                     <th role="columnheader" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 200px;">影院地址</th>
-                                    <th role="columnheader" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 100px;">影院电话</th>
+                                    <th role="columnheader" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 100px;">影院联系方式</th>
                                    
                                     <th role="columnheader" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 60px;">影院状态</th>
-                                    <th role="columnheader" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 60px;">操作</th>
+                                    <th role="columnheader" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 40px;">操作</th>
                                 </tr>
                             </thead>
                                 
-
+<!-- array_values(array_shift(explode(",",$v['cinema_movie']))) -->
                         <tbody role="alert" aria-live="polite" aria-relevant="all">
                            
                             @foreach($cinema as $k=>$v)
                         	    <tr class="odd" align="center">
                                     <td class=" sorting_1">{{ $v['id'] }}</td>
                                     <td class=" ">{{$v['cinema_name']}}</td>
+                                    <td class=" "><a herf="#" style="color:red">{{  explode(",",$v['cinema_movie'])[0] }}</a></td>
+                                    <td class=" "><a herf="#" style="color:red">{{  
+
+                                    substr($v['cinema_movie'],strpos($v['cinema_movie'],',')+1) }}</a></td>
                                     <td class=" ">{{$v['address']}}</td>
                                     <td class=" ">{{$v['phone']}}</td>
                                     
-                                    <td class=" ">{{$v['status']?'正常营业':'维护中'}}</td>
+                                    <td class="">{{$v['status']?'正常营业':'维护中'}}</td>
                                     <td class=" ">
                                         <span class="btn-group">
                                             <a href="/admin/cineman/edit/{{$v['status']}}-{{$v['id']}}" class="btn btn-small"><i class="{{$v['status']?'icon-ban-circle':'icon-ok-sign'}}"></i></a>
+                                            
+                                            <a href="/admin/movie/list/{{$v['id']}}" class="btn btn-small"><i class="icon-facetime-video"></i></a>
                                             
                                             <a href="/admin/cineman/update/{{$v['id']}}" class="btn btn-small"><i class="icon-pencil"></i></a>
                                             <a href="/admin/cineman/destroy/{{$v['id']}}" class="btn btn-small" onclick='return fun()'><i class="icon-trash"></i></a>

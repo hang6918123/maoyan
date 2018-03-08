@@ -22,11 +22,11 @@
                    @endif
 <div class="mws-panel grid_8">
                     <div class="mws-panel-header">
-                        <span><i class="icon-table"></i>影院列表</span>
+                        <span><i class="icon-table"></i>影厅列表</span>
                     </div>
                     <div class="mws-panel-body no-padding">
                         <div id="DataTables_Table_1_wrapper" class="dataTables_wrapper" role="grid">
-                            <form action="{{ url('admin/cineman') }}" method="get">
+                            <form action="{{ url('/admin/movie/vseek') }}" method="get">
 
                             <div id="DataTables_Tabsle_1_length" class="dataTables_length">
                                 <label>单页显示
@@ -40,48 +40,51 @@
                                 </div>
                                 <div class="dataTables_filter" id="DataTables_Table_1_filter">
                                     <label>搜索影院: 
-                                        <input type="text" name="cineman_seek" aria-controls="DataTables_Table_1">
+                                        <input type="text" name="cinema_name" aria-controls="DataTables_Table_1">
                                     </label>
                                      {{ csrf_field() }}
                                     <input type="submit" value="搜索影院" class="btn btn-success">
                                 
                                 </div>
+
+
                                 </form>
                                 <table class="mws-datatable-fn mws-table dataTable" id="DataTables_Table_1" aria-describedby="DataTables_Table_1_info">
                             <thead>
                                 <tr role="row">
-                                    <th role="columnheader" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 20px;">影院ID</th>
+                                    <th role="columnheader" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 80px;">影院ID</th>
                                     <th role="columnheader" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 100px;">影院名称</th>
-                                    <th role="columnheader" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 20px;">普通厅</th>
-                                    <th role="columnheader" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 40px;">特殊厅</th>
+                                    
+                                    <th role="columnheader" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 60px;">影厅</th>
 
-                                    <th role="columnheader" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 200px;">影院地址</th>
-                                    <th role="columnheader" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 100px;">影院电话</th>
+                                    <th role="columnheader" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 100px;">普通厅正在播放电影</th>
+                                    <th role="columnheader" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 100px;">特殊厅正在播放电影</th>
+                                    <th role="columnheader" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 50px;">普通厅开始播放时间</th>
                                    
-                                    <th role="columnheader" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 60px;">影院状态</th>
+                                    <th role="columnheader" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 50px;">特殊厅开始播放时间</th>
                                     <th role="columnheader" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 40px;">操作</th>
                                 </tr>
                             </thead>
                                 
 
                         <tbody role="alert" aria-live="polite" aria-relevant="all">
-                           
+                          
                             @foreach($cinema as $k=>$v)
                         	    <tr class="odd" align="center">
-                                    <td class=" sorting_1">{{ $v['id'] }}</td>
-                                    <td class=" ">{{$v['cinema_name']}}</td>
-                                    <td class=" "><a herf="#">{{  explode(",",$v['cinema_movie'])[0] }}</a></td>
-                                    <td class=" "><a herf="#">{{
-                                    substr($v['cinema_movie'],strpos($v['cinema_movie'],',')+1) }}<a></td>
-                                    <td class=" ">{{$v['address']}}</td>
-                                    <td class=" ">{{$v['phone']}}</td>
+                                    <td class=" sorting_1">{{ $input['id'] }}</td>
+                                    <td class=" ">{{$input['name']}}</td>
+                                    <td class=" "><a herf="#">{{  $v['movies_type'] }}</a></td>
+                                    <td class=" "><a herf="#">{{ $v['movies_common'] }}<a></td>
+                                    <td class=" ">{{$v['movies_special']}}</td>
+                                    <td class=" ">{{$v['movies_common_time']}}</td>
+                                    <td class=" ">{{$v['movies_special_time']}}</td>
                                     
-                                    <td class=" ">{{$v['status']?'正常营业':'维护中'}}</td>
+                                    
                                     <td class=" ">
                                         <span class="btn-group">
                                             
-                                            <a href="/admin/cineman/up/{{$v['id']}}" class="btn btn-small"><i class="icon-reply-to-all"></i></a>
-                                            <a href="/admin/cineman/de/{{$v['id']}}" class="btn btn-small" onclick='return fun()'><i class="icon-finder"></i></a>
+                                            <a href="/admin/movie/edit/{{$v['id']}}" class="btn btn-small" onclick='return fun()'><i class="icon-finder"></i></a>
+                                            
                                         </span>
                                     </td>
                                 </tr>
@@ -110,7 +113,7 @@
 <script>
    function fun(){
         
-        if(confirm("你确定要永久删除吗?")){
+        if(confirm("你确定要删除吗?")){
             return true;
         }else{
             

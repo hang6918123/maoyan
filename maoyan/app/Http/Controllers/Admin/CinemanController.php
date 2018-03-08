@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use Illuminate\Contracts\Validation\Validator;
-use App\Cinemas;
+use App\Models\Cinemas;
+use App\Models\Movie;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Library\cineman_3;
 
 class CinemanController extends Controller
 {
@@ -31,7 +33,7 @@ class CinemanController extends Controller
         // dd($cinema[0]);
         return view('admin/cineman/cineman',['cinema'=>$cinema]);
     }
-//影院添加页面g
+//影院添加页面
     public function getAdd(){
         
         return view('admin/cineman/cineman_add');
@@ -40,9 +42,10 @@ class CinemanController extends Controller
     public function postStara(Request $request)
     {
         //判断添加数据
-        //
-        // dd($request->all());
+        
         $input = $request->except(['_token']);
+
+      
 
         $date = $this->validate($request, [
             'cineman_name' => 'required',
@@ -50,29 +53,45 @@ class CinemanController extends Controller
             'cineman_phone' => 'required',
             "cineman_province" => 'required',
             "cineman_country"=> 'required',
-             "cineman_town" => 'required'
+             "cineman_town" => 'required',
+             "cineman_number" => 'required|numeric'
         ],[
             'cineman_name.required' => '电影院名字必填',
             'cineman_address.required' => '电影院地址必填',
             'cineman_phone.required' => '电影院联系方式必填',
             'cineman_province.required' => '地址必填',
             'cineman_country.required' => '地址必填',
-            'cineman_country.required' => '地址必填'
+            'cineman_country.required' => '地址必填',
+            "cineman_number.required" => '影厅数量必填',
+            "cineman_number.numeric" => '影厅数量只能填写正整数'
         ]);
-         $str = $input['cineman_province'].'-'.$input['cineman_country'].'-'.$input['cineman_town'].'-'.$input['cineman_address'];
-        // $str = strlen($input['cineman_country']);
-       
-        // dd($str);
+        $str = $input['cineman_province'].'-'.$input['cineman_country'].'-'.$input['cineman_town'].'-'.$input['cineman_address'];
+        
+        $number = intval($input['cineman_number']);
+
+        
+        if(!$input['cineman_gender']){
+            $number = $number.',';
+
+        }else{
+            $type = implode(',',$request->input('checkbox'));
+            
+            $number = $number.','.$type;
+           
+       }
+        
+        
         $cinemas = new Cinemas;
 
         $cinemas->cinema_name = $input['cineman_name'];
         $cinemas->phone = $input['cineman_phone'];
         $cinemas->address = $str;
-        
+        $cinemas->cinema_movie = $number;
         
         $date = $cinemas->save();
         if($date){
-            // return redirect('/admin/config')->with('msg', 'Update Success! 成功！ :)');
+            
+
             return back()->with('mes','添加成功');
         }
 
@@ -99,8 +118,11 @@ class CinemanController extends Controller
     {
 
         $cinema = Cinemas::find($id);
-
-        return view('admin/cineman/cineman_edit',['cinema'=>$cinema]);
+        
+        
+        $movies = explode(',',(substr($cinema['cinema_movie'],strpos($cinema['cinema_movie'],',')+1)));
+        // dd($movies);
+        return view('admin/cineman/cineman_edit',['cinema'=>$cinema,'movies'=>$movies]);
     }
 
 //影院修改处理
@@ -114,7 +136,9 @@ class CinemanController extends Controller
             'cineman_phone' => 'required',
             "cineman_province" => 'required',
             "cineman_country"=> 'required',
-             "cineman_town" => 'required'
+             "cineman_town" => 'required',
+             "cineman_town" => 'required',
+             "cineman_number" => 'required|numeric'
 
         ],[
             'cineman_name.required' => '电影院名字必填',
@@ -122,22 +146,37 @@ class CinemanController extends Controller
             'cineman_phone.required' => '电影院联系方式必填',
             'cineman_province.required' => '地址必填',
             'cineman_country.required' => '地址必填',
-            'cineman_country.required' => '地址必填'
+            
+            "cineman_number.required" => '影厅数量必填',
+            "cineman_number.numeric" => '影厅数量只能填写正整数'
         ]);
          $str = $input['cineman_province'].'-'.$input['cineman_country'].'-'.$input['cineman_town'].'-'.$input['cineman_address'];
         // $str = strlen($input['cineman_country']);
        
+       $number = intval($input['cineman_number']);
+
+        
+        if(!$input['cineman_genderr']){
+            $number = $number.',';
+
+        }else{
+            $type = implode(',',$request->input('checkbox'));
+            
+            $number = $number.','.$type;
+           
+       }
+
         $id = $input['cineman_id'];
         $cinemas = Cinemas::find($id);
         $cinemas->cinema_name = $input['cineman_name'];
         $cinemas->phone = $input['cineman_phone'];
         $cinemas->address = $str;
         $cinemas->status = $input['cineman_gender'];
-        
+        $cinemas->cinema_movie = $number;
         
         $date = $cinemas->save();
         if($date){
-            // return redirect('/admin/config')->with('msg', 'Update Success! 成功！ :)');
+            
             return redirect('admin/cineman')->with('mes','修改成功');
         }
     }
@@ -155,24 +194,28 @@ class CinemanController extends Controller
     {
          $page = $request -> input('cineman_count',5);
         $search = $request -> input('cineman_seek','');
-        // dd($request->all());
+        
+        
         if(!empty($search)){
            $cinema = Cinemas::orderBy('cinema_name','asc')
            ->where('cinema_name','like','%'.$search.'%')
            ->onlyTrashed()
            ->paginate($page);
+
+           $movies = explode(',',(substr($cinema['cinema_movie'],strpos($cinema['cinema_movie'],',')+1)));
         }else{
 
             $cinema = Cinemas::orderBy('id','asc')
             ->onlyTrashed()
             ->paginate($page);
-        
+            
+            $movies = explode(',',(substr($cinema['cinema_movie'],strpos($cinema['cinema_movie'],',')+1)));
         }
         
        
         
-        // dd($cinemas);
-        return view('admin/cineman/cineman_delete',['cinema'=>$cinema]);
+        
+        return view('admin/cineman/cineman_delete',['cinema'=>$cinema,'movies'=>$movies]);
     }
 //恢复被删除的影院
     public function getUp($id)
@@ -222,13 +265,16 @@ class CinemanController extends Controller
         {
            $cinema = Cinemas::where('id',$str)->first();
              
+           $movies = explode(',',(substr($cinema['cinema_movie'],strpos($cinema['cinema_movie'],',')+1)));
+
+
             if($cinema){
 
-                return view('admin/cineman/cineman_edit',['cinema'=>$cinema]);
+                return view('admin/cineman/cineman_edit',['cinema'=>$cinema,'movies'=>$movies]);
             }else{
                $cinema = Cinemas::where('id',$str)->onlyTrashed()->first();
                if($cinema){
-                 return view('admin/cineman/cineman_edit',['cinema'=>$cinema]);
+                 return view('admin/cineman/cineman_edit',['cinema'=>$cinema,'movies'=>$movies]);
                  
                }else{
 
@@ -240,8 +286,10 @@ class CinemanController extends Controller
            $cinema = Cinemas::where('cinema_name',$str)->first();
           
            if($cinema){
-               
-                return view('admin/cineman/cineman_edit',['cinema'=>$cinema]);
+                
+               $movies = explode(',',(substr($cinema['cinema_movie'],strpos($cinema['cinema_movie'],',')+1))); 
+                
+                return view('admin/cineman/cineman_edit',['cinema'=>$cinema,'movies'=>$movies]);
             
             }else{
                
@@ -249,7 +297,7 @@ class CinemanController extends Controller
                 
                 if($cinema){
                     
-                return view('admin/cineman/cineman_edit',['cinema'=>$cinema]);
+                return view('admin/cineman/cineman_edit',['cinema'=>$cinema,'movies'=>$movies]);
                 
                 }else{
                    return back()->with('mes','没有查到您想要找的电影院'); 
@@ -258,6 +306,7 @@ class CinemanController extends Controller
         }
 
 
-}
+        }
+
 }
 

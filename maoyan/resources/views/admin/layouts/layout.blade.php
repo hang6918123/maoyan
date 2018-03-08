@@ -119,6 +119,16 @@
                         </ul>
                     </li>
                     <li>
+                        <a href="#"><i class="icon-home"></i>影厅管理</a>
+                        <ul class="closed">
+                            
+                            <li><a href="/admin/movie">电影上架</a></li>
+                            <li><a href="/admin/movie/delete">电影下架</a></li>
+                            <li><a href="/admin/movie/edit">座位管理</a></li>
+                            <li><a href="/admin/movie/delete">删除影厅</a></li>
+                        </ul>
+                    </li>
+                    <li>
                         <a href="#"><i class="icon-facetime-video"></i>影片管理</a>
                         <ul class="closed">
                             <li><a href="/admin/video/list">影片列表</a></li>
@@ -203,6 +213,8 @@
 
     <!-- Demo Scripts (remove if not needed) -->
     <script src="/admin/js/demo/demo.files.js"></script>
+@section('buttom')
 
+@show               
 </body>
 </html>

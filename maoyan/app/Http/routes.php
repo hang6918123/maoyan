@@ -38,5 +38,6 @@ Route::get('/admin/video/list', function () {
 Route::get('/admin/video/info', function () {
     return view('admin/vinfo');
 });
-// Route::controller('/conde','Home\UserController');
+
 Route::controller('admin/cineman','admin\CinemanController');
+Route::controller('admin/movie','admin\MovieController');

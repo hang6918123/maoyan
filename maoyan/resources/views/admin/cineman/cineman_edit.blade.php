@@ -40,20 +40,11 @@
                     </div>
                     
 
-						
-
-                    	
-                    
-                    
                     <div class="mws-panel-body no-padding">
                     	
                     	<form class="mws-form" action="/admin/cineman/alter" method="post">
                                    {{ csrf_field() }}
-
-                                
-                    			
-                                   
-                                
+      
                     		<div class="mws-form-inline">
 
                     			
@@ -64,7 +55,40 @@
                     				</div>
                     			</div>
                                    
+                                <div class="mws-form-row">
+                                  <label class="mws-form-label">普通厅数量</label>
+                                  <div class="mws-form-item">
+                                    <input type="number" class="small" name='cineman_number' value="{{ intval(explode(',',$cinema['cinema_movie'])[0]) }}">
+                                  </div>
+                                </div>
 
+                                
+                                 <div class="mws-form-row"> 
+                                  <label class="mws-form-label">是否有特殊厅</label>
+                                  <div class="mws-form-item">
+                                            <ul class="mws-form-list inline">
+                                            @if( strlen(substr($cinema['cinema_movie'],strpos($cinema['cinema_movie'],',')+1)) )
+                                                <li><input name="cineman_genderr" value="1" type="radio" checked > <label>有特殊厅</label></li>
+                                                <li><input name="cineman_genderr" value="0"  type="radio"> <label>没有特殊厅</label></li>
+                                            @else
+                                                 <li><input name="cineman_genderr" value="1" type="radio" > <label>有特殊厅</label></li>
+                                                <li><input name="cineman_genderr" value="0"  type="radio" checked > <label>没有特殊厅</label></li>
+                                            @endif
+                                            </ul>
+                                              
+                                  </div>
+                                </div>
+                                   <div class="mws-form-row" id='Tingg'>
+                                      <label class="mws-form-label">选择特殊厅</label>
+                                      <div class="mws-form-item clearfix">
+                                        <ul class="mws-form-list inline">
+                                            @for($i=0;$i<count(movie());$i++)
+    
+                                          <li><input type="checkbox" name='checkbox[]' value='{{movie()[$i]}}' @foreach($movies as $k=>$v)@if($v == movie()[$i]) checked @endif @endforeach> <label>{{movie()[$i]}}</label></li>
+                                          @endfor
+                                          </ul>
+                                        </div>
+                                    </div>
                                    
                                    <div class="mws-form-row">
                                        影院地址:

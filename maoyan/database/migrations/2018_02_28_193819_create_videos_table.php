@@ -14,13 +14,18 @@ class CreateVideosTable extends Migration
     {
          //影片表数据库迁移
         Schema::create('videos',function(Blueprint $table){
-            $table -> increments('id')->comment('影片id');     //影片id
-            $table -> string('name')->comment('影片名');       //影片名
-            $table -> string('type')->comment('影片类型');       //影片类型
-            $table -> string('region')->comment('影片拍摄地');     //影片拍摄地
-            $table -> string('years')->comment('影片上映时间');     //影片上映时间
-            $table -> string('language')->comment('影片语言');     //影片语言
-            $table -> string('language')->comment('影片时长');     //影片语言
+            $table -> increments('id')->comment('影片id');
+            $table -> string('name',64)->comment('影片名');
+            $table -> string('type',64)->comment('影片类型');
+            $table -> string('region',64)->comment('影片拍摄地');
+            $table -> string('years',64)->comment('影片上映时间');
+            $table -> string('photo',255)->comment('影片封面');
+            $table -> string('content',255)->comment('影片简介');
+            $table -> string('language',64)->comment('影片语言');
+            $table -> bigInteger('time')->comment('影片时长');
+            $table->bigInteger('state')->comment('影片状态');
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -32,5 +37,6 @@ class CreateVideosTable extends Migration
     public function down()
     {
         //
+        Schema::drop('videos');
     }
 }
