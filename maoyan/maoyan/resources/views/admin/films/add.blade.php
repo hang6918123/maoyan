@@ -1,4 +1,4 @@
-@extends('admin.layouts.layout')
+@extends('admin.layout')
 <script language="javascript" src="/admin/js/YMDClass.js"></script>
 <meta name="csrf-token" content="{{csrf_token()}}">
 @section('main')

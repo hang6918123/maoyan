@@ -1,4 +1,4 @@
-@extends('admin/layouts/layout')
+@extends('admin.layout')
 @section('css')
 <link rel="stylesheet" type="text/css" href="/admin/css/page_page.css">
 @endsection

@@ -1,6 +1,8 @@
-@extends('admin.layouts.layout')
+@extends('admin.layout')
+@section('css')
 <script language="javascript" src="/admin/js/YMDClass.js"></script>
 <meta name="csrf-token" content="{{csrf_token()}}">
+@endsection
 @section('main')
 <div class="mws-panel grid_8">
                     <div class="mws-panel-header">

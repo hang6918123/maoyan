@@ -14,6 +14,7 @@ class CreateVideoScoreTable extends Migration
     {   //影片评价评分表
          Schema::create('videoScore', function(Blueprint $table)
         {
+            $table->increments('id')->comment('评论表id');
             $table->integer('vid')->comment('影片关联id');
             $table->integer('uid')->comment('用户id');
             $table->bigInteger('score')->comment('影片评分');

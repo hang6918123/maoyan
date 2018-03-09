@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreBlogPostRequest;
 use App\Models\Videos;
 use Upload;
+use App\Models\videoscore;
 use DB;
 use DispatchesJobs, ValidatesRequests;
 use Illuminate\Contracts\Validation\Validator;
@@ -230,10 +231,10 @@ class VideosController extends Controller
     public function destroy($id)
     {
         $photo = Videos::where('id',$id)->first()-> photo;
-        
+        $score = DB::table('videscore')->where('vid',$id)->delete();
         $videos = Videos::where('id',$id)->forceDelete();
 
-        if($videos == 0){
+        if($videos == 0 && $score == 0){
             return back()->with('serror', '删除失败');
         };
          if(is_file(public_path().'/upload/videos/'.$photo)){
@@ -282,8 +283,9 @@ class VideosController extends Controller
 
     public function dele($id){
         $photo = Videos::onlyTrashed()->where('id',$id)->first()->photo;
-         $videos = Videos::onlyTrashed()->where('id',$id)->forceDelete();
-         if($videos == 0){
+        $score = DB::table('videscore')->where('vid',$id)->delete();
+        $videos = Videos::onlyTrashed()->where('id',$id)->forceDelete();
+         if($videos == 0 && $score == 0){
             return back()->with('serror', '删除失败');
         }
         if(is_file(public_path().'/upload/videos/'.$photo)){

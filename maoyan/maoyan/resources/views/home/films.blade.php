@@ -1,8 +1,11 @@
 @extends('home/layouts.layout')
 $section('css')
 <link rel="stylesheet" href="/home/css/movie-list.ffb4de4a.css"/>
+<link rel="stylesheet" href="/home/css/common.4b838ec3_1.css"/>
+<link rel="stylesheet" href="/home/css/movie-list.ffb4de4a.css"/>
+  <script src="/home/js/stat.583e6097_1.js"></script>
 @show
-@section('header')
+@section('content')
    
 <div class="header-placeholder"></div>
 
@@ -942,6 +945,13 @@ $section('css')
 
     </div>
   <script type="text/javascript">
+  $('.navbar li a:contains(电影)').toggleClass('active');
+</script>
+@endsection
+@section('js')
+    <script src="/home/js/common.1faad3f9_1.js"></script>
+    <script src="/home/js/movie-list.195190ba.js"></script>
+   <script type="text/javascript">
   $('.navbar li a:contains(电影)').toggleClass('active');
 </script>
 @endsection

@@ -1,4 +1,4 @@
-@extends('admin/layouts/layout')
+@extends('admin/layout')
 @section('css')
 <link rel="stylesheet" type="text/css" href="/admin/css/page_page.css">
 @endsection
@@ -28,8 +28,20 @@
                                     <td class=" ">{{$v['type']}}</td>
                                     <td class=" ">{{$v['years']}}</td>
                                     <td class=" ">{{$v['time']}}</td>
-                                    <td class=" ">{{$v['state']}}</td>
                                     <td class=" ">
+                                        @if($v['state'] == 0)
+                                            停止售票
+                                        @elseif($v['state'] == 1)
+                                            售票
+                                        @elseif($v['state'] == 2)
+                                            预售票
+                                        @else
+                                            状态错误
+                                        @endif
+                                    </td>
+                                    <td class=" ">
+                                        <a href="/admin/score/info/video/{{$v['id']}}" class="btn  btn-small" title="查看用户评价">
+                                            <i  class="icon-feather"></i></a>
                                         <a href="/admin/video/{{$v['id']}}" class="btn  btn-small">
                                             <i title="查看详情" class="icon-file-openoffice"></i></a> 
                                             <a href="/admin/recycle/{{$v['id']}}" class="btn  btn-small" title="放入回收站" btn-small"><i class="icon-ban-circle"></i></a>
