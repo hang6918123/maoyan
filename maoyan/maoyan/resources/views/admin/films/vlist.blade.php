@@ -29,15 +29,7 @@
                                     <td class=" ">{{$v['years']}}</td>
                                     <td class=" ">{{$v['time']}}</td>
                                     <td class=" ">
-                                        @if($v['state'] == 0)
-                                            停止售票
-                                        @elseif($v['state'] == 1)
-                                            售票
-                                        @elseif($v['state'] == 2)
-                                            预售票
-                                        @else
-                                            状态错误
-                                        @endif
+                                       {{state($v['state'])}}
                                     </td>
                                     <td class=" ">
                                         <a href="/admin/score/info/video/{{$v['id']}}" class="btn  btn-small" title="查看用户评价">
