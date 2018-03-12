@@ -23,17 +23,32 @@ class User extends Model implements AuthenticatableContract,
      */
     protected $table = 'users';
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = ['name', 'email', 'password'];
+    // /**
+    //  * The attributes that are mass assignable.
+    //  *
+    //  * @var array
+    //  */
+    // protected $fillable = ['name', 'email', 'password'];
 
-    /**
-     * The attributes excluded from the model's JSON form.
-     *
-     * @var array
-     */
-    protected $hidden = ['password', 'remember_token'];
+    // /**
+    //  * The attributes excluded from the model's JSON form.
+    //  *
+    //  * @var array
+    //  */
+    // protected $hidden = ['password', 'remember_token'];
+    // 订单表一对多关系
+    public function Orders(){
+        return $this->hasMany('App\Models\Orders','uid');
+    }
+
+    // 评价表一对多关系
+    public function videoscore(){
+        return $this->hasMany('App\Models\videoscore','uid');
+    }
+
+     public function usv()
+    {
+        return $this->belongsToMany('App\Models\videoscore','videoscore','uid','vid');
+           
+    }
 }

@@ -1,5 +1,6 @@
 @extends('home.layout')
 
+
 @section('title')
 用户中心
 @endsection

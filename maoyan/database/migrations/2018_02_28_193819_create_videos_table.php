@@ -23,7 +23,12 @@ class CreateVideosTable extends Migration
             $table -> string('content',255)->comment('影片简介');
             $table -> string('language',64)->comment('影片语言');
             $table -> bigInteger('time')->comment('影片时长');
+<<<<<<< HEAD
             $table->bigInteger('state')->comment('影片状态');
+=======
+            $table->bigInteger('box_office')->comment('票房');
+            $table->bigInteger('state')->comment('影片状态;0:停止售票;1:售票;2:预售;');
+>>>>>>> 8e4d54f7c7edf8bbc2afb3cfa6c21ae519842965
             $table->timestamps();
             $table->softDeletes();
         });

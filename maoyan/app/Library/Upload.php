@@ -21,7 +21,7 @@ class Upload
 	
 	public function __construct($file, $desDir= '/upload', $allowType=['image/jpeg', 'image/png', ['image/gif']], $allowSize=1024*1024)
 	{
-		$this->_file = $file;
+		$this->_file = $_FILES[$file];
 		$this->_desDir = $desDir;
 		$this->_allowType = $allowType;
 		$this->_allowSize = $allowSize;

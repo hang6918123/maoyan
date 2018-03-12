@@ -26,6 +26,7 @@
         },
         "files":[
         "app/library/cineman_3.php",
+        "app/library/helper.php",
         "app/library/Upload.php"
     ]
     },

@@ -106,8 +106,7 @@
                     <li>
                         <a href="#"><i class="icon-file"></i>订单管理</a>
                         <ul class="closed">
-                            <li><a href="form_layouts.html">订单列表</a></li>
-                            <li><a href="form_elements.html">查询订单</a></li>
+                            <li><a href="/admin/orders">订单列表</a></li>
                         </ul>
                     </li>
                     <li>
@@ -129,8 +128,9 @@
                     <li>
                         <a href="#"><i class="icon-facetime-video"></i>影片管理</a>
                         <ul class="closed">
-                            <li><a href="/admin/video/list">影片列表</a></li>
-                            <li><a href="form_elements.html">添加影片</a></li>
+                            <li><a href="/admin/video/create">添加影片</a></li>
+                            <li><a href="/admin/video">影片列表</a></li>
+                            <li><a href="/admin/vshow">影片回收站</a></li>
                         </ul>
                     </li>
                     <li>

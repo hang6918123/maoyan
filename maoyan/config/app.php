@@ -27,6 +27,7 @@ return [
     */
 
     'url' => 'http://localhost',
+    'title'=> '后台首页',
 
     /*
     |--------------------------------------------------------------------------
@@ -148,6 +149,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         Toplan\PhpSms\PhpSmsServiceProvider::class,
 		Toplan\Sms\SmsManagerServiceProvider::class,
+
 
     ],
 
