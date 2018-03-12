@@ -23,3 +23,4 @@ Route::group(['middleware'=>'homeLogin'],function(){
 
 Route::controller('admin/user','Admin\UserController');
 Route::controller('admin/auth','Admin\AuthController');
+Route::resource('admin/news','Admin\NewsController');

@@ -144,8 +144,8 @@
                     <li>
                         <a href="#"><i class="icon-bullhorn"></i>资讯管理</a>
                         <ul class="closed">
-                            <li><a href="form_layouts.html">资讯列表</a></li>
-                            <li><a href="form_elements.html">添加资讯</a></li>
+                            <li><a href="/admin/news">资讯列表</a></li>
+                            <li><a href="/admin/news/create">添加资讯</a></li>
                         </ul>
                     </li>
                     <li>
