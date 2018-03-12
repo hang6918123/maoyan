@@ -117,7 +117,9 @@
     </p>
     <p>北京猫眼文化传媒有限公司</p>
 </div>
+@section('js')
+
+
+@show
 </body>
 </html>
-@section('js')
-@show

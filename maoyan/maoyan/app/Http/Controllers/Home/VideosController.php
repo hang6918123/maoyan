@@ -8,7 +8,8 @@ use App\Http\Requests;
 use DB;
 use App\Http\Controllers\Controller;
 use App\Models\Videos;
-use App\Models\Videoscores;
+use App\User;
+use App\Models\Videoscore;
 class VideosController extends Controller
 {
     /**
@@ -40,7 +41,7 @@ class VideosController extends Controller
             $years = year()[$_GET['yearId']-1];
             //判断时间段
             if($years == year()[0]){
-                $video->where('years','<',$years.'-12-31');
+                $video->where('years','>',$years.'-12-31');
             }elseif($years == '2000-2010'){
                 $video->where('years','<','2010-12-31');
                 $video->where('years','>','2000-1-1');
@@ -116,7 +117,16 @@ class VideosController extends Controller
      */
     public function show($id)
     {
-        //
+        //电影详情页
+        $video = Videos::find($id)->first();
+        //查询评论
+        
+        $score = DB::table('Videos')
+            ->leftJoin('videoscore','videoscore.vid','=','Videos.id')
+            ->leftJoin('users','videoscore.uid','=','users.id')
+            ->select('users.name as uname','users.created_at as creat_time','videoscore.*','videos.*')
+            ->where('Videos.id',$id)->get();
+    return view('home/film',['video'=>$score[0],'score'=>$score]);
     }
 
     /**

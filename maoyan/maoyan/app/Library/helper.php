@@ -41,39 +41,9 @@ function state($v){
 	}
 }
 //判断$_GET内是多少数组并进行url拼接
-function get_url($k,$get,$id,$path){
+function get_url($k,$v,$get,$id,$path){
 			
-		if($k == 'catId'){
-			if($path == 'sourceId' || $path == 'yearId' || $path == 'sortId'){
-				$get[$path] = $id;
-			return http_build_query($get);
-			}
-			$get[$k] = $id;
-			return http_build_query($get);
-		}elseif($k == 'sourceId'){
-			if($path == 'catId' || $path == 'yearId' || $path == 'sortId'){
-				$get[$path] = $id;
-			return http_build_query($get);
-			}
-			$get[$k] = $id;
-			return http_build_query($get);
-		}elseif($k == 'yearId'){
-	
-			if($path == 'catId' || $path == 'sourceId' || $path == 'sortId'){
-				$get[$path] = $id;
-			return http_build_query($get);
-			}
-			$get[$k] = $id;
-			return http_build_query($get);
 			
-		}elseif($k == 'sortId'){
-			if($path == 'catId' || $path == 'sourceId' || $path == 'yearId'){
-				$get[$path] = $id;
-			return http_build_query($get);
-			}
-			$get[$k] = $id;
-			return http_build_query($get);
-		}		
 }
 //电影路径处理
 //$get
@@ -90,36 +60,36 @@ function pth($get,$id,$path){
 		if(count($get)==1){
 			
 			if($k == 'catId'){
-			if($path == 'sourceId' || $path == 'yearId' || $path == 'sortId'){
-				$get[$path] = $id;
-			return http_build_query($get);
+				if($path == 'sourceId' || $path == 'yearId' || $path == 'sortId'){
+					$get[$path] = $id;
+					return http_build_query($get);
+				}
+				$get[$k] = $id;
+				return http_build_query($get);
+			}elseif($k == 'sourceId'){
+				if($path == 'catId' || $path == 'yearId' || $path == 'sortId'){
+					$get[$path] = $id;
+				return http_build_query($get);
+				}
+				$get[$k] = $id;
+				return http_build_query($get);
+			}elseif($k == 'yearId'){
+		
+				if($path == 'catId' || $path == 'sourceId' || $path == 'sortId'){
+					$get[$path] = $id;
+				return http_build_query($get);
+				}
+				$get[$k] = $id;
+				return http_build_query($get);
+				
+			}elseif($k == 'sortId'){
+				if($path == 'catId' || $path == 'sourceId' || $path == 'yearId'){
+					$get[$path] = $id;
+				return http_build_query($get);
+				}
+				$get[$k] = $id;
+				return http_build_query($get);
 			}
-			$get[$k] = $id;
-			return http_build_query($get);
-		}elseif($k == 'sourceId'){
-			if($path == 'catId' || $path == 'yearId' || $path == 'sortId'){
-				$get[$path] = $id;
-			return http_build_query($get);
-			}
-			$get[$k] = $id;
-			return http_build_query($get);
-		}elseif($k == 'yearId'){
-	
-			if($path == 'catId' || $path == 'sourceId' || $path == 'sortId'){
-				$get[$path] = $id;
-			return http_build_query($get);
-			}
-			$get[$k] = $id;
-			return http_build_query($get);
-			
-		}elseif($k == 'sortId'){
-			if($path == 'catId' || $path == 'sourceId' || $path == 'yearId'){
-				$get[$path] = $id;
-			return http_build_query($get);
-			}
-			$get[$k] = $id;
-			return http_build_query($get);
-		}
 		}
 		if(count($get)==2){
 			

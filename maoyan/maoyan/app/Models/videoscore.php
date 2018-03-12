@@ -10,14 +10,14 @@ class videoscore extends Model
     public $table = 'videoscore';
 
     // 多条评论属于一个用户
-    public function user()
-    {
-        return $this->belongsTo('App\User','uid');
-    }
+    // public function user()
+    // {
+    //     return $this->belongsTo('App\User','uid');
+    // }
 
     // 多条评论属于一个电影
-    public function video()
+    public function user()
     {
-    	return $this->belongsTo('App\Models\videos','vid');
+    	return $this->belongsToMany('App\User','uid');
     }
 }

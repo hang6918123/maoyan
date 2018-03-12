@@ -133,7 +133,7 @@ $section('css')
           <li>
             <span class="sort-control-group  
            "  data-act='sort-click' data-val="{tagId: 2 }"
-                  data-href="?{{ pth($get,1,'sortId')}}"
+                  data-href="/films?{{ pth($get,1,'sortId')}}"
                   onclick="location.href=this.getAttribute('data-href')"
             >
               <span class="sort-control sort-radio @if($sortId == 1)
@@ -146,7 +146,7 @@ $section('css')
             <span class="sort-control-group 
              
             " data-act='sort-click' data-val="{tagId: 3 }"
-                  data-href="?{{ pth($get,2,'sortId')}}"
+                  data-href="/films?{{ pth($get,2,'sortId')}}"
                   onclick="location.href=this.getAttribute('data-href')"
             >
               <span class="sort-control sort-radio @if($sortId == 2)
@@ -159,7 +159,7 @@ $section('css')
       </div>
       <div class="play-sorter">
         <span class="sort-control-group" data-act='isplay-click' data-val="{isplay:1}"
-          data-href="?isPlay=1"
+          data-href="/films?isPlay=1"
           onclick="location.href=this.getAttribute('data-href')">
           <span class="sort-control sort-checkbox"></span>
           <span class="sort-control-label">可播放</span>
