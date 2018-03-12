@@ -41,3 +41,4 @@ Route::get('/admin/video/info', function () {
 
 Route::controller('admin/cineman','admin\CinemanController');
 Route::controller('admin/movie','admin\MovieController');
+Route::controller('admin/carousel','admin\CarouselController');

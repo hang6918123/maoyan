@@ -15,11 +15,11 @@ class MovieController extends Controller
     /**
      * @param   void
      *
-     * @return 返回影厅列表页面
+     * @return 返回影厅查找页面
      */
     public function getIndex()
     {
-        return view('admin/movie/movie',['common'=>'','special'=>[]]);
+        return view('admin/movie/movie_add',['common'=>'','special'=>[]]);
     }
     /**
      * @param   id
@@ -47,7 +47,7 @@ class MovieController extends Controller
      {	
      	$input = $request->all();
     	
-     	
+     	dd($input);
 
     	if(intval($input['movie_name'])){
     		$movies = Cinemas::find($input['movie_name']);
@@ -150,7 +150,7 @@ class MovieController extends Controller
     public function getDelete()
     {
 
-    	return view('admin.movie.movie_delete');
+    	return view('admin.movie.movie_edit',['cinema'=>[],'input'=>[]]);
     }
 //电影下架查找
     public function getVseek(Request $request)

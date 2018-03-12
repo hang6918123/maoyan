@@ -136,10 +136,10 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="#"><i class="icon-bars"></i>排行管理</a>
+                        <a href="#"><i class="icon-bars"></i>轮播图管理</a>
                         <ul class="closed">
-                            <li><a href="form_layouts.html">影片列表</a></li>
-                            <li><a href="form_elements.html">添加影片</a></li>
+                            <li><a href="/admin/carousel/add">添加轮播图</a></li>
+                            <li><a href="/admin/carousel/edit">选择轮播图</a></li>
                         </ul>
                     </li>
                     <li>

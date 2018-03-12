@@ -48,13 +48,13 @@
                                   <label class="mws-form-label">是否有特殊厅</label>
                                   <div class="mws-form-item">
                                             <ul class="mws-form-list inline">
-                                                <li><input name="cineman_gender" value="1" type="radio" onclick="show()"> <label>有特殊厅</label></li>
-                                                <li><input name="cineman_gender" value="0" checked="" type="radio" onclick="hidden()"> <label>没有特殊厅</label></li>
+                                                <li><input name="cineman_gender" value="1" type="radio" > <label>有特殊厅</label></li>
+                                                <li><input name="cineman_gender" value="0" checked="" type="radio"> <label>没有特殊厅</label></li>
                                             </ul>
                                               
                                   </div>
                                 </div>
-                                   <div class="mws-form-row" id='Tingg'>
+                                   <div class="mws-form-row" id="Tingg">
                                       <label class="mws-form-label">选择特殊厅</label>
                                       <div class="mws-form-item clearfix">
                                         <ul class="mws-form-list inline">
@@ -75,18 +75,7 @@
                                           </ul>
                                         </div>
                                     </div>
-                                    <script>
-                                      function show(){
-                                      
-                                        $("#tingg").attr("display","");
-                                      
-                                      }
-                                      function hidden(){
-                                        $("#tingg").attr("display","none");
-                                      
-                                      
-                                      }
-                                    </script>
+                                    
                                    
                                    <div class="mws-form-row">
                                        影院地址:
@@ -125,4 +114,24 @@
                     	</form>
                     </div>    	
                 </div>
+<script type="text/javascript">
+  $(document).ready(function(){
+  $("#Tingg").click(function(){
+  $(this).hide();
+  });
+});
+    // function show(){          
+    // alert(1);
+    // // $("#Tingg").removeAttr("display");
+    // function hiddenn(){
+    // alert(2);
+    // // $("#Tingg").attr("display","none");
+                                          
+    //  }
+</script>
+@endsection
+@section('buttom')
+
+   
+
 @endsection

@@ -53,6 +53,7 @@
                                <input type="hidden" value="{{$movies['id'] or ''}}" name="cinema_id">
 
                                 @for($i=1; $i<= $common; $i++)
+                                    @if(isset($common))
                                     <div class="mws-form-col-1-6">
                                         <label class="mws-form-label">厅{{$i}}电影上架</label>
                                         <div class="mws-form-item">
@@ -65,11 +66,13 @@
                                             <input type="text" name="{{$i}}time[]">
                                         </div>
                                     </div>
+                                    @endif
                                 @endfor
                              
                                 
-                                 
+                                 @if(isset($special))
                                   @for($i=0;$i<count($special);$i++)
+                                  
                                     <div class="mws-form-col-1-8">
                                         <label class="mws-form-label">{{$special[$i]}}电影上架</label>
                                         <div class="mws-form-item">
@@ -81,9 +84,9 @@
                                         <div class="mws-form-item">
                                             <input type="text" name="{{$special[$i]}}time[]">
                                         </div>
-                                    </div>
+                                    </div>  
                                   @endfor    
-                                    
+                                    @endif
                                     </div>
                                
                                     </div>

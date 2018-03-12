@@ -73,8 +73,8 @@
                         	    <tr class="odd" align="center">
                                     <td class=" sorting_1">{{ $input['id'] }}</td>
                                     <td class=" ">{{$input['name']}}</td>
-                                    <td class=" "><a herf="#">{{  $v['movies_type'] }}</a></td>
-                                    <td class=" "><a herf="#">{{ $v['movies_common'] }}<a></td>
+                                    <td class=" ">{{  $v['movies_type'] }}</td>
+                                    <td class=" ">{{ $v['movies_common'] }}</td>
                                     <td class=" ">{{$v['movies_special']}}</td>
                                     <td class=" ">{{$v['movies_common_time']}}</td>
                                     <td class=" ">{{$v['movies_special_time']}}</td>
@@ -91,19 +91,15 @@
                             @endforeach
                             </tbody>
                         </table>
-                        <!-- <div class="dataTables_info" id="DataTables_Table_1_info">Showing 1 to 10 of 57 entries
-                        </div>
-
-                        
-                        <div id="page_page">
-                            {!! $cinema->render() !!}
-                        </div> -->
+                        @if($cinema)
                         <div class="dataTables_paginate paging_full_numbers" id="DataTables_Table_1_paginate">
                             <div id="page_page">
+                            
                             {!! $cinema->render() !!}
+                            
                             </div>
                         </div>
-
+                        @endif
                     </div>
                     </div>
                    </div>

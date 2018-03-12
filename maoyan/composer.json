@@ -23,7 +23,8 @@
             "App\\": "app/"
         },
         "files":[
-        "app/library/cineman_3.php"
+        "app/library/cineman_3.php",
+        "app/library/Upload.php"
     ]
     },
     "autoload-dev": {
