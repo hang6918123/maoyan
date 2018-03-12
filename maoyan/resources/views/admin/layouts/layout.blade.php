@@ -34,6 +34,8 @@
 <link rel="stylesheet" type="text/css" href="/admin/css/mws-theme.css" media="screen">
 <link rel="stylesheet" type="text/css" href="/admin/css/themer.css" media="screen">
 
+<title>MWS Admin - Files</title>
+
 </head>
 
 <body>
@@ -120,11 +122,8 @@
                     <li>
                         <a href="#"><i class="icon-home"></i>影厅管理</a>
                         <ul class="closed">
-                            
-                            <li><a href="/admin/movie/add">电影上架</a></li>
-                            <li><a href="/admin/movie/edit">电影下架</a></li>
-                            <li><a href="/admin/movie/edit">座位管理</a></li>
-                            <li><a href="/admin/movie/delete">删除影厅</a></li>
+                            <li><a href="/admin/movie">电影上架</a></li>
+                            <li><a href="/admin/movie/delete">电影下架</a></li>
                         </ul>
                     </li>
                     <li>
@@ -135,10 +134,10 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="#"><i class="icon-bars"></i>排行管理</a>
+                        <a href="#"><i class="icon-bars"></i>轮播图管理</a>
                         <ul class="closed">
-                            <li><a href="form_layouts.html">影片列表</a></li>
-                            <li><a href="form_elements.html">添加影片</a></li>
+                            <li><a href="/admin/carousel/add">添加轮播图</a></li>
+                            <li><a href="/admin/carousel/edit">选择轮播图</a></li>
                         </ul>
                     </li>
                     <li>

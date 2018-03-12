@@ -47,7 +47,6 @@
                 </ul>
             </div>
         </div>
-
         <div class="nav">
             <ul class="navbar">
                 <li><a href="/" data-act="home-click"  class="active"  >首页</a></li>

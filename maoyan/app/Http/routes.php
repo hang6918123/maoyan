@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home/index');
 });
 
 Route::controller('login','Home\LoginController');
@@ -24,3 +24,8 @@ Route::group(['middleware'=>'homeLogin'],function(){
 Route::controller('admin/user','Admin\UserController');
 Route::controller('admin/auth','Admin\AuthController');
 Route::resource('admin/news','Admin\NewsController');
+
+
+Route::controller('admin/cineman','admin\CinemanController');
+Route::controller('admin/movie','admin\MovieController');
+Route::controller('admin/carousel','admin\CarouselController');
