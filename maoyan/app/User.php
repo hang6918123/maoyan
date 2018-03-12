@@ -49,5 +49,6 @@ class User extends Model implements AuthenticatableContract,
      public function usv()
     {
         return $this->belongsToMany('App\Models\videoscore','videoscore','uid','vid');
+           
     }
 }
