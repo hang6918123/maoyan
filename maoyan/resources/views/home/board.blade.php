@@ -1,5 +1,5 @@
 @extends('home/layouts/layout')
-$section('css')
+@section('css')
 <link rel="stylesheet" href="/home/css/board-index.92a06072.css"/>
 <script src="/home/js/jquery-3.3.1.min.js"></script>
 @show

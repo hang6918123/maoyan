@@ -50,7 +50,7 @@
             >全部</a>
           </li>
             @foreach(vtype() as $k=>$v)
-          <li @if($catId == $v)
+          <li @if($catId == ($k+1))
                 class="active"
                 @endif >
             <a data-act="tag-click" data-val="{TagName:'{{$v}}'}"
@@ -64,18 +64,18 @@
       <li class="tags-line tags-line-border" id="source" data-val="{tagTypeName:'source'}">
         <div class="tags-title">区域 :</div>
         <ul class="tags">
-          <li @if($scoureId == null)
+          <li @if($sourceId == null)
                 class="active"
                 @endif data-state-val="{ sourceTagName:'全部'}" >
             <a data-act="tag-click" data-val="{TagName:'全部'}"
-                @if($scoureId != null)
+                @if($sourceId != null)
                 href="/films?{{ pth($get,0,'sourceId')}}"
                 @endif
                  style="cursor: default"
             >全部</a>
           </li>
-          @foreach(vregion() as $k => $v)
-          <li @if($scoureId == $v)
+          @foreach(vregion() as $k=>$v)
+          <li @if($sourceId == ($k+1))
                 class="active"
                 @endif >
             <a data-act="tag-click" data-val="{TagName:'{{$v}}'}"
@@ -100,8 +100,8 @@
                 @endif  style="cursor: default"
             >全部</a>
           </li>
-          @foreach(year() as $k => $v)
-          <li @if($yearId == $v)
+          @foreach(year() as $k=>$v)
+          <li @if($yearId == ($k+1))
                 class="active"
                 @endif>
             <a data-act="tag-click"
@@ -210,7 +210,7 @@
      
 
   
-{!! $data->render() !!}
+{!! $data->appends(get_url(['catId' =>$catId,'sourceId'=>$sourceId,'yearId'=>$yearId,'sortId'=>$sortId]))->render() !!}
 
 </li>
 </ul>

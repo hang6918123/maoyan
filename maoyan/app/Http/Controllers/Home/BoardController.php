@@ -26,9 +26,15 @@ class BoardController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function query()
     {
-        //
+        $kw = $_GET['kw'];
+        if($kw != null){
+            $data = DB::table('videos')->where('name','like','%'.$kw.'%')->where('deleted_at','=',null)->paginate(10);
+        }else{
+            $data = [];
+        }
+        return view('home.query',['data'=>$data,'kw'=>$kw]);
     }
 
     /**

@@ -302,7 +302,7 @@ val = {"id":1182552};    window.system = {"user":{"id":{{session('id')}},"token"
         </div>
         <!-- <i class="level-1-icon"></i> -->
       </div>
-      <div class="main">
+      <div class="main ">
         <div class="main-header clearfix">
           <div class="user">
             <span class="name">{{$v['name']}}</span>
@@ -310,19 +310,12 @@ val = {"id":1182552};    window.system = {"user":{"id":{{session('id')}},"token"
               <!-- <span class='tag'>购</span> -->
           </div>
           <div class="time">
-            <span title="2018-02-16 10:49:11">{{substr($v['created_at'],0,10)}}</span>
+            <span title="2018-02-16 10:49:11">{{substr($v['create'],0,10)}}</span>
             <ul class="score-star clearfix" data-score="5">
-   {!!score($v['u_score'])!!}
+            {!!score($v['u_score'])!!}
           </div>
-          <?php 
-          // var_dump($zan);
-          // var_dump(in_array($v['id'],$zan));
-          // var_dump(in_array(session('id'),$zan));
-          // var_dump(in_array($video->id,$zan));
-           ?>
-         
-          @foreach($zan as $s => $a)
-          @if(in_array($v['id'],$a) && in_array(session('id'),$a) && in_array($video->id,$a))
+          @if(session('id'))
+          @if(strrpos($zan,$video->id.session('id').$v['id']))
           <div class="approve active" id="user" data-id="{{$v['id']}}">
             <i data-act="comment-approve-click" class="approve-icon"></i><span class="num">{{$v['zan']+1}}</span>
           </div>
@@ -331,7 +324,7 @@ val = {"id":1182552};    window.system = {"user":{"id":{{session('id')}},"token"
             <i data-act="comment-approve-click" class="approve-icon"></i><span class="num">{{$v['zan']}}</span>
           </div>
           @endif
-          @endforeach
+          @endif
         </div>
         <div class="comment-content">{{$v['u_content']}}</div>
       </div>
@@ -716,8 +709,8 @@ val = {"id":1182552};    window.system = {"user":{"id":{{session('id')}},"token"
   <dd class="news-item" data-act="new-click" data-val="{newsid:35226}">
     <div class="news-img">
       <a href="/films/news/35226" target="_blank">
-        <img class="news-img-default" src="/home/{{$v['poster']}}" />
-        <img class="news-img-detail" data-src="/home/picture/" />
+        <!-- <img class="news-img-default" src="/home/{{$v['poster']}}" /> -->
+        <img class="news-img-detail" data-src="/home/{{$v['poster']}}" style="width:140px;height: 86px;" />
       </a>
     </div>
     <div class="news-main">

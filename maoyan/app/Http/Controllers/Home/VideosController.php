@@ -28,20 +28,23 @@ class VideosController extends Controller
         // 按时类型排序
         if(intval(isset($_GET['catId']))>0){
             $cat = vtype()[$_GET['catId']-1];
+            $catId = $_GET['catId'];
             $video ->where('type','like','%'.$cat.'%');
         }else{
-            $cat = '';
+            $catId = '';
         }
         // 按时区域排序
         if(intval(isset($_GET['sourceId']))>0){
             $region = vregion()[$_GET['sourceId']-1];
+            $sourceId = $_GET['sourceId'];
             $video -> where('region',$region);
         }else{
-            $region = '';
+            $sourceId = '';
         }
         // 按时年代排序
         if(intval(isset($_GET['yearId']))>0){
             $years = year()[$_GET['yearId']-1];
+            $yearId = $_GET['yearId'];
             //判断时间段
             if($years == year()[0]){
                 $video->where('years','>',$years.'-12-31');
@@ -61,7 +64,7 @@ class VideosController extends Controller
 
             }
         }else{
-            $years = '';
+            $yearId = '';
         }
          // 按热门排序   按时间排序   按评价排序
             $date = date('Y-m-d',time());
@@ -82,13 +85,17 @@ class VideosController extends Controller
             $sortId = '';
             // $video->where('years','>',$date);
         }
-          $data =    $video->leftJoin('videoscore', 'videos.id', '=', 'videoscore.vid')->where('Videos.deleted_at','=',null)->select('Videos.*','videoscore.u_score')->groupBy('videos.id')->paginate(60);
+          $data =    $video->leftJoin('videoscore', 'videos.id', '=', 'videoscore.vid')->where('Videos.deleted_at','=',null)->select('Videos.*','videoscore.u_score')->groupBy('videos.id')->paginate(10);
         //
         $get = [];
         $get = $_GET;
-
-// dd($data);
-        return view('home/films',['data'=>$data,'catId'=>$cat,'scoureId'=>$region,'yearId'=>$years,'sortId'=>$sortId,'get'=>$get]);
+        foreach($get as $k=>$v){
+        if($k == 'page'){
+            unset($get[$k]);
+        }
+    }
+// dd($get);
+        return view('home/films',['data'=>$data,'catId'=>$catId,'sourceId'=>$sourceId,'yearId'=>$yearId,'sortId'=>$sortId,'get'=>$get]);
     }
 
     /**
@@ -133,7 +140,7 @@ class VideosController extends Controller
         }
         // dd($video);
         // 获取用户评论
-       $score = DB::table('videoscore')->where('vid',$id)->where('u_content','>',0)->leftJoin('users','videoscore.uid','=','users.id')->select('users.*','videoscore.u_content','videoscore.u_score','videoscore.zan')->get();
+       $score = DB::table('videoscore')->where('vid',$id)->where('u_content','>',0)->leftJoin('users','videoscore.uid','=','users.id')->select('users.*','videoscore.u_content','videoscore.u_score','videoscore.zan','videoscore.created_at as create')->get();
        //获取用户信息
        $uid = session('id');
        $user = DB::table('videoscore')->where('uid',$uid)->where('vid',$id)->select('videoscore.u_score','videoscore.think')->first();
@@ -144,17 +151,17 @@ class VideosController extends Controller
        
        if($set){
             $redis =  Redis::hgetall('zan'.$uid);
-            $zan = [];
-            foreach($redis as $v){
-                $arr = json_decode($v,true);
-                $zan[] = $arr;
+            $zan = '';
+            foreach($redis as $k => $v){
+                static $a = 0;
+                $zan .= ($a.':'.$k.',');
+                ++$a;
             } 
        }else{
-          $zan = [[1]];
+          $zan = '';
        }
        //获取最新资讯
        $news = DB::table('news')->paginate(5);
-            // dd($zan);
         return view('home/film',['video'=>$info,'score'=>$score,'user'=>$user,'zan'=>$zan,'news'=>$news,'uid'=>$uid]);
     }
 
@@ -292,14 +299,15 @@ class VideosController extends Controller
         // 登录用户ID
         $b_uid = $request->input('userId');
         Redis::select(15);
-        $set = Redis::exists('zan'.$uid,$vid.$uid.$b_uid);
+        $set = Redis::hexists('zan'.$uid,$vid.$uid.$b_uid);
         // 检查redis中是否存在数据
+        // return dd($set);
        if(!$set){
             $data = json_encode(['uid'=>$uid,'vid'=>$vid,'b_uid'=>$b_uid]);
             $res = Redis::hset('zan'.$uid,$vid.$uid.$b_uid,$data);
         return dd($res);
        }else{
-            $res = Redis::del('zan'.$uid,$vid.$uid.$b_uid);
+            $res = Redis::hdel('zan'.$uid,$vid.$uid.$b_uid);
         return $res;
 
        }

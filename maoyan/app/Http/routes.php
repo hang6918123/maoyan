@@ -35,6 +35,8 @@ Route::resource('/films','Home\VideosController');
 Route::controller('/film','Home\VideosController');
 // 前台榜单
 Route::controller('/board','Home\BoardController');
+// 前台搜索
+Route::get('/query','Home\BoardController@query');
 // 后台影片管理路由
 Route::get('/admin/recycle/{id}','Admin\VideosController@recycle');
 Route::post('/admin/dele/{id}','Admin\VideosController@dele');

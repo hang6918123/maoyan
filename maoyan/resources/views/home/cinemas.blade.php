@@ -1,5 +1,5 @@
 @extends('home/layouts.layout')
-$section('css')
+@section('css')
 <link rel="stylesheet" href="/home/css/cinemas-list.81574a4d.css"/>
 @show
 @section('header')

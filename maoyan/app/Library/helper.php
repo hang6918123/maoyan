@@ -44,13 +44,22 @@ function state($v){
 	}
 }
 //判断$_GET内是多少数组并进行url拼接
-function get_url($k,$v,$get,$id,$path){
-			
-			
+function get_url($url){
+	foreach($url as $k => $v){
+		if(empty($v)){
+			unset($url[$k]);
+		}
+	}
+	return $url;		
 }
 //电影路径处理
 //$get
 function pth($get,$id,$path){
+	foreach($get as $k=>$v){
+		if($k == 'page'){
+			unset($get[$k]);
+		}
+	}
 		if($id == 0){
 			unset($get[$path]);
 			return	http_build_query($get);
