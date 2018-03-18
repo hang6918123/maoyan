@@ -13,4 +13,5 @@ class Movie extends Model
 	{
 		 return $this->belongTo('App\Models\Cinemas','cinemas_id'); 
 	}
+
 }

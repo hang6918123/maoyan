@@ -33,8 +33,10 @@
 <!-- Theme Stylesheet -->
 <link rel="stylesheet" type="text/css" href="/admin/css/mws-theme.css" media="screen">
 <link rel="stylesheet" type="text/css" href="/admin/css/themer.css" media="screen">
+
 @section('css')
 @show
+
 <title>MWS Admin - Files</title>
 
 </head>

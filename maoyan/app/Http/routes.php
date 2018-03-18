@@ -65,3 +65,11 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>['adminLogin'
 	//后台网站配置
 	Route::resource('webconf','WebconfController');
 });
+
+
+Route::get('/cinemas/address','home\CinemasController@address');
+Route::get('/cinemas/seeks','home\CinemasController@seeks');
+Route::get('/cinemas/seekt','home\CinemasController@seekt');
+Route::get('/cinemas/seekte','home\CinemasController@seekte');
+Route::controller('/cinemas','home\CinemasController');
+

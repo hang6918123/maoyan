@@ -76,7 +76,7 @@ class CinemanController extends Controller
         }else{
             $type = implode(',',$request->input('checkbox'));
             
-            $number = $number.','.$type;
+            $number = $number.','.$type.',';
            
        }
         
@@ -85,9 +85,9 @@ class CinemanController extends Controller
 
         $cinemas->cinema_name = $input['cineman_name'];
         $cinemas->phone = $input['cineman_phone'];
+        $cinemas->cinema_money = $input['cineman_money'];
         $cinemas->address = $str;
         $cinemas->cinema_movie = $number;
-        
         $date = $cinemas->save();
         if($date){
             
@@ -162,7 +162,7 @@ class CinemanController extends Controller
         }else{
             $type = implode(',',$request->input('checkbox'));
             
-            $number = $number.','.$type;
+            $number = $number.','.$type.',';
            
        }
 
@@ -173,6 +173,7 @@ class CinemanController extends Controller
         $cinemas->address = $str;
         $cinemas->status = $input['cineman_gender'];
         $cinemas->cinema_movie = $number;
+        $cinemas->cinema_money = $input['cineman_money'];
         
         $date = $cinemas->save();
         if($date){
@@ -236,7 +237,11 @@ class CinemanController extends Controller
 //永久删除影院
     public function getDe($id=0)
     {
-        
+        $movie = Movie::where('cinemas_id',$id)->get()->toArray();
+        if($movie){
+            return back()->with('mss','需要把影院下的电影下架才能删除');
+        }
+
         $cinemas = Cinemas::where('id',$id)->first();
         if($cinemas){
             $cinemas = Cinemas::where('id',$id)->first();

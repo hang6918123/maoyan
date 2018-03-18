@@ -90,6 +90,7 @@ class LoginController extends Controller
         session()->put('name',$data->name);
         session()->put('phone',$data->phone);
         session()->put('photo',$data->photo);
+
         return redirect('/');
 
     }

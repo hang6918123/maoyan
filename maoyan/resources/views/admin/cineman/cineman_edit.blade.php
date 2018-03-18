@@ -61,7 +61,13 @@
                                     <input type="number" class="small" name='cineman_number' value="{{ intval(explode(',',$cinema['cinema_movie'])[0]) }}">
                                   </div>
                                 </div>
-
+                                
+                                <div class="mws-form-row">
+                                  <label class="mws-form-label">影院最低价影片</label>
+                                  <div class="mws-form-item">
+                                    <input type="number" class="small" name='cineman_money' value="{{ $cinema['cinema_money'] }}">
+                                  </div>
+                                </div>
                                 
                                  <div class="mws-form-row"> 
                                   <label class="mws-form-label">是否有特殊厅</label>
@@ -124,7 +130,7 @@
                                     	<ul class="mws-form-list">
                                         	<li><input type="radio" name="cineman_gender" value="1"{{$cinema['status']?'checked':''}}> <label>开启</label></li>
                                         	<li><input type="radio" name="cineman_gender" value="0"{{$cinema['status']?'':'checked'}}> <label>关闭</label></li>
-                                        </ul>
+                                       </ul>
                                         
                     				</div>
                     			</div>

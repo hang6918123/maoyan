@@ -28,7 +28,11 @@
         "files":[
         "app/library/cineman_3.php",
         "app/library/helper.php",
-        "app/library/Upload.php"
+        "app/library/Upload.php",
+        "app/Library/cinemas_exist.php",
+        "app/Library/cinema_seek.php",
+        "app/Library/cinema_2d.php"
+
     ]
     },
     "autoload-dev": {

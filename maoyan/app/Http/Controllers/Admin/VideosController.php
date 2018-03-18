@@ -231,7 +231,9 @@ class VideosController extends Controller
     public function destroy($id)
     {
         $photo = Videos::where('id',$id)->first()-> photo;
+
         $score = DB::table('videscore')->where('vid',$id)->delete();
+
         $videos = Videos::where('id',$id)->forceDelete();
 
         if($videos == 0 && $score == 0){
