@@ -27,7 +27,7 @@ class IndexController extends Controller
         $timestamp = time();
         $time = strtotime(date('Y-m-d', strtotime("this week Monday", $timestamp)));
         //获取本周完成订单数量
-        $data['order'] = Orders::where('state',0)->where('time','>',$time)->count();
+        $data['order'] = Orders::where('state',0)->where('order_time','>',$time)->count();
         //获取影院数量
         $data['cinemas'] = Cinemas::count();
         //获取影片数量

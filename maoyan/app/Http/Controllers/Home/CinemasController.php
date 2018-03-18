@@ -137,8 +137,7 @@ class CinemasController extends Controller
        }
        $cinemas_videoss = array_unique_fb($cinemas_videoss);
 
-       // dd($cinemas_common);
-       // $cinema->moviess()->
+     
         return view('\home\details',['cinemas_common'=>$cinemas_common,'cinemas_special'=>$cinemas_special,'cinemas'=>$cinemas,'cinemas_videoss'=>$cinemas_videoss]);
     }
 

@@ -216,7 +216,7 @@
               <span class="caret"></span>
               <ul class="user-menu">
                 <li class="text">
-                  <a href="/profile/orders">我的订单</a>
+                  <a href="/cinemas/orders">我的订单</a>
                 </li>
                 <li class="text login-name"><a href="/user">基本信息</a></li>
                 <li class="text"><a href="/login/out" class="J-logout" data-act="logout-click">退出登录</a></li>

@@ -45,7 +45,7 @@
                     </div>
 
                     <div class="mws-panel-body no-padding">
-                      <form class="mws-form" action="add" method="post">
+                      <form class="mws-form" action="/admin/movie/add" method="post">
                             
                             <div class="mws-form-row">
                               <div class="mws-form-cols">
