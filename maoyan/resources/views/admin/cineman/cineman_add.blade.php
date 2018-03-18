@@ -54,13 +54,13 @@
                                   <label class="mws-form-label">是否有特殊厅</label>
                                   <div class="mws-form-item">
                                             <ul class="mws-form-list inline">
-                                                <li><input name="cineman_gender" value="1" type="radio" > <label>有特殊厅</label></li>
+                                                <li><input name="cineman_gender" value="1" type="radio" id="Tinga"> <label>有特殊厅</label></li>
                                                 <li><input name="cineman_gender" value="0" checked="" type="radio" id="Tingg"> <label>没有特殊厅</label></li>
                                             </ul>
                                               
                                   </div>
                                 </div>
-                                   <div class="mws-form-row" id="Tingg">
+                                   <div class="mws-form-row" id="Tinggg">
                                       <label class="mws-form-label">选择特殊厅</label>
                                       <div class="mws-form-item clearfix">
                                         <ul class="mws-form-list inline">
@@ -123,12 +123,23 @@
 
 @endsection
 @section('buttom')
+
+
 <script type="text/javascript">
-  $(document).ready(function(){
-  $("#Tingg").click(function(){
-  $(this).hide();
+    $(document).ready(function(){
+    $('#Tingg').trigger('click');
   });
-});
+
+  
+
+    $("#Tingg").click(function(){
+    $("#Tinggg").hide();
+    });
+
+    $("#Tinga").click(function(){
+    $("#Tinggg").show();
+  });
+
     
 </script>
    

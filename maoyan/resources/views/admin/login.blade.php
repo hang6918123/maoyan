@@ -69,7 +69,7 @@
         var url ="/admin/login/captcha/1?a=" + Math.random();
         $(this).attr('src',url);
     });
-
+    
     $('.mws-form').submit(function(){
         var name_res = /^\w{2,15}$/;
         var username = $('input[name=username]').val();

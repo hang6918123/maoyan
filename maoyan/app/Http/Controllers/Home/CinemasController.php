@@ -156,11 +156,23 @@ class CinemasController extends Controller
         $video = Videos::find($videos_id)->toArray();
         // dd($movie['movies_type']);
 
-        // $yishou = Orders::where('number','like','%'.$cinema['id'].$movie['movies_type'].'%')->lists('seat')->all()->toArray();
-        // dd($yishou);
+        $yishou = Orders::where('number','like','%'.$cinema['id'].'a'.$movie['movies_type'].'%')->lists('seat')->all();
+        $shouchu='';
+        foreach ($yishou as $key => $value) {
+            $shouchu .= $value.'#';
+        }
+        $array = [];
+        for($i=0;$i<substr_count($shouchu,'#');$i++)
+        {   
+            $array[] = cut_str($shouchu,'#',$i);
 
+        }
+        $arrayy = json_encode($array);
+        // dd($arrayy);
+        // var_dump($arrayy);
+        // dd();
         session(['moviee'=>$movie,'cinemaa'=>$cinema,'videoo'=>$video]);
-        return view('\home\writ',['movie'=>$movie,'cinema'=>$cinema,'video'=>$video]);
+        return view('\home\writ',['movie'=>$movie,'cinema'=>$cinema,'video'=>$video,'arrayy'=>$arrayy]);
     }
     //生成订单
     public function getOrders(Request $request)
@@ -180,7 +192,7 @@ class CinemasController extends Controller
         $vid = $video['id'];
         $uid = $user;
         $order_time = date('Y-m-d H:i:s',time());
-        $number = $cinema['id'].$movie['movies_type'].'a'.time().rand(1,999);
+        $number = $cinema['id'].'a'.$movie['movies_type'].'a'.time().rand(1,999);
         $video_name = $video['name'];
         $cinema_name = $cinema['cinema_name'];
         $movie_type =$movie['movies_type'];

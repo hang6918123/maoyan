@@ -72,19 +72,19 @@
                                  <div class="mws-form-row"> 
                                   <label class="mws-form-label">是否有特殊厅</label>
                                   <div class="mws-form-item">
-                                            <ul class="mws-form-list inline">
+                                            <ul class="mws-form-list inline" id="tigg">
                                             @if( strlen(substr($cinema['cinema_movie'],strpos($cinema['cinema_movie'],',')+1)) )
-                                                <li><input name="cineman_genderr" value="1" type="radio" checked > <label>有特殊厅</label></li>
-                                                <li><input name="cineman_genderr" value="0"  type="radio"> <label>没有特殊厅</label></li>
+                                                <li><input name="cineman_genderr" value="1" type="radio" checked id="Tinga"> <label>有特殊厅</label></li>
+                                                <li><input name="cineman_genderr" value="0"  type="radio" id="Tingg"> <label>没有特殊厅</label></li>
                                             @else
-                                                 <li><input name="cineman_genderr" value="1" type="radio" > <label>有特殊厅</label></li>
-                                                <li><input name="cineman_genderr" value="0"  type="radio" checked > <label>没有特殊厅</label></li>
+                                                 <li><input name="cineman_genderr" value="1" type="radio" id="Tinga"> <label>有特殊厅</label></li>
+                                                <li><input name="cineman_genderr" value="0"  type="radio" checked id="Tingg"> <label>没有特殊厅</label></li>
                                             @endif
                                             </ul>
                                               
                                   </div>
                                 </div>
-                                   <div class="mws-form-row" id='Tingg'>
+                                   <div class="mws-form-row" id='Tinggg'>
                                       <label class="mws-form-label">选择特殊厅</label>
                                       <div class="mws-form-item clearfix">
                                         <ul class="mws-form-list inline">
@@ -145,4 +145,29 @@
                     	</form>
                     </div>    	
                 </div>
+@endsection
+@section('buttom')
+
+
+<script type="text/javascript">
+    $(document).ready(function(){
+      $("#tigg>li['checked']").trigger('click');
+  
+
+  });
+
+  
+
+    $("#Tingg").click(function(){
+    $("#Tinggg").hide();
+    });
+
+    $("#Tinga").click(function(){
+    $("#Tinggg").show();
+  });
+
+    
+</script>
+   
+
 @endsection
