@@ -59,7 +59,7 @@ class UserController extends Controller
                     return  $newName;
                 } else {
                     //入库不成功删掉移动成功的头像
-                    $newfile = public_path().'/uploads/user/'.$newName;
+                    $newfile = public_path().'\uploads\user\\'.$newName;
                     unlink($newfile);
                 }
 

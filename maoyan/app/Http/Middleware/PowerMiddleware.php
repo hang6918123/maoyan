@@ -4,6 +4,8 @@ namespace App\Http\Middleware;
 
 use Closure;
 use App\Models\UserPower;
+use App\Models\Power;
+
 class PowerMiddleware
 {
     /**
@@ -15,26 +17,31 @@ class PowerMiddleware
      */
     public function handle($request, Closure $next)
     {
-        $uid = $request->session()->get('id');
+        //获取当前路由和方法
+        $ask_method = basename(request()->route()->getActionName());
+        //给管理员后台首页通用权限
+        if($ask_method == 'Closure'){
+            return $next($request);
+        }
+        //查看岗位
+        $uid = $request->session()->get('a_id');
         $data = UserPower::where('uid',$uid)->get();
-        if($data->count() > 0){
-            $arr = [];
-            foreach ($data as $v) {
-                $route = $v->power();
-                if($route->count() > 0){
-                    foreach($route as $r){
-                        if($r['pid'] == '-1'){
-                            return $next($request);
-                        }
-                        $arr = array_push($arr,$r['route']);
+        foreach($data->all() as $k){
+            $route = $k->power;
+            if($route->count() > 0){
+                foreach($route as $r){
+                    if($r->pid == '-1'){
+                        return $next($request);
                     }
+                    $arr[] = $r->route;
                 }
             }
-            $ask_method = basename(request()->route()->getActionName());
-            if(in_array($ask_method,$arr)){
-                return $next($request);
-            }
         }
+        //看是否有权限
+        if(in_array($ask_method,$arr)){
+            return $next($request);
+        }
+        
         return back(); 
     }
 }

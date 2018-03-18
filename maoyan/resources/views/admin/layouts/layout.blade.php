@@ -12,7 +12,7 @@
 <!-- Plugin Stylesheets first to ease overrides -->
 <link rel="stylesheet" type="text/css" href="/admin/plugins/colorpicker/colorpicker.css" media="screen">
 <link rel="stylesheet" href="/admin/plugins/plupload/jquery.plupload.queue.css" media="screen">
-<link rel="stylesheet" href="/admin/plugins/elfinder/css/elfinder.css"media="screen" >
+<link rel="stylesheet" href="/admin/plugins/elfinder/css/elfinder.css" media="screen" >
 
 <!-- Required Stylesheets -->
 <link rel="stylesheet" type="text/css" href="/admin/bootstrap/css/bootstrap.min.css" media="screen">
@@ -33,7 +33,8 @@
 <!-- Theme Stylesheet -->
 <link rel="stylesheet" type="text/css" href="/admin/css/mws-theme.css" media="screen">
 <link rel="stylesheet" type="text/css" href="/admin/css/themer.css" media="screen">
-
+@section('css')
+@show
 <title>MWS Admin - Files</title>
 
 </head>
@@ -47,7 +48,7 @@
         
         	<!-- Logo Wrapper, images put within this wrapper will always be vertically centered -->
         	<div id="mws-logo-wrap">
-            	<img src="/admin/images/logo.png" alt="mws admin">
+            	<a href="/admin/index"><img src="/admin/images/logo.png" alt="mws admin"></a>
 			</div>
         </div>
         
@@ -58,18 +59,16 @@
             
             	<!-- User Photo -->
             	<div id="mws-user-photo">
-                	<img src="/admin/example/profile.jpg" alt="User Photo">
+                	<img src="/uploads/user/{{session()->get('a_photo')}}" alt="User Photo">
                 </div>
                 
                 <!-- Username and Functions -->
                 <div id="mws-user-functions">
                     <div id="mws-username">
-                        Hello, John Doe
+                        {{session()->get('a_name')}}
                     </div>
                     <ul>
-                    	<li><a href="#">Profile</a></li>
-                        <li><a href="#">Change Password</a></li>
-                        <li><a href="index.html">Logout</a></li>
+                        <li><a href="/admin/login/out">退出</a></li>
                     </ul>
                 </div>
             </div>
@@ -148,10 +147,16 @@
                         </ul>
                     </li>
                     <li>
+                        <a href="#"><i class="icon-attachment"></i>友情链接</a>
+                        <ul class="closed">
+                            <li><a href="/admin/link">链接列表</a></li>
+                            <li><a href="/admin/link/create">添加链接</a></li>
+                        </ul>
+                    </li>
+                    <li>
                         <a href="#"><i class="icon-wrench"></i>站点配置</a>
                         <ul class="closed">
-                            <li><a href="form_layouts.html">影片列表</a></li>
-                            <li><a href="form_elements.html">添加影片</a></li>
+                            <li><a href="/admin/webconf">配置列表</a></li>
                         </ul>
                     </li>
                 </ul>

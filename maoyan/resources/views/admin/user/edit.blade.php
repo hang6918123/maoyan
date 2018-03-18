@@ -7,7 +7,7 @@
 @section('main')
 <div class="mws-panel grid_4" style="left:20%;">
 	@if(session()->has('error'))
-        <div class="mws-form-message success">
+        <div class="mws-form-message error">
             <font style="vertical-align: inherit;">
                 {{session()->get('error')}}
             </font>
@@ -42,8 +42,8 @@
                 	<label class="mws-form-label">用户类型：</label>
                     <div class="mws-form-item">
                         <select class="large" name="auth">
-                            <option value="0" {{$user->auth ? '' : 'checked:checked'}}>普通用户</option>
-                            <option value="1" {{$user->auth ? 'checked:checked' : ''}}>管理员</option>
+                            <option value="0" {{$user->auth ? '' : 'selected'}}>普通用户</option>
+                            <option value="1" {{$user->auth ? 'selected' : ''}}>管理员</option>
                         </select>
                     </div>
                 </div>
@@ -51,8 +51,8 @@
                     <label class="mws-form-label">用户状态：</label>
                     <div class="mws-form-item">
                         <select class="large" name="state">
-                            <option value="0" {{$user->state ? '' : 'checked:checked'}}>正常</option>
-                            <option value="1" {{$user->state ? 'checked:checked' : ''}}>禁用</option>
+                            <option value="0" {{$user->state ? '' : 'selected'}}>正常</option>
+                            <option value="1" {{$user->state ? 'selected' : ''}}>禁用</option>
                         </select>
                     </div>
                 </div>

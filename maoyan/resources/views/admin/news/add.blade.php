@@ -10,13 +10,18 @@
         <span><i class="icon-pencil"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 资讯发布</font></font></span>
     </div>
     <div class="mws-panel-body no-padding">
-        <form class="mws-form" action="/admin/news" method="post">
-            {{csrf_field()}}
+        <form class="mws-form" action="javascript:;" method="post" id="news_form" enctype="multipart/form-data">
             <div class="mws-form-inline">
                 <div class="mws-form-row">
                     <label class="mws-form-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">标题</font></font></label>
                     <div class="mws-form-item">
                         <input type="text" class="large" name="title">
+                    </div>
+                </div>
+                <div class="mws-form-row">
+                    <label class="mws-form-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">描述</font></font></label>
+                    <div class="mws-form-item">
+                        <input type="text" class="large" name="descride">
                     </div>
                 </div>
                 <div class="mws-form-row">
@@ -58,5 +63,5 @@
 @endsection
 
 @section('buttom')
-<script src="/admin/js/user/userAdd.js"></script>
+<script src="/admin/js/news/newsAdd.js"></script>
 @endsection
