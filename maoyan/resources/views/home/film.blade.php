@@ -756,8 +756,6 @@ val = {"id":1182552};    window.system = {"user":{"id":{{session('id')}},"token"
 <div class="channel-detail channel-detail-orange"><i class="integer">8.</i><i class="fraction">0</i></div>
   
  -->
-
-
     </div>
   </div>
   </div>
@@ -774,15 +772,15 @@ val = {"id":1182552};    window.system = {"user":{"id":{{session('id')}},"token"
     <div class="score-star-contaienr">
       <ul class="score-star clearfix" data-score="" id="clearfix">
     <li>
-<i class="half-star left "></i><i class="half-star right "></i>    </li>
+<i class="half-star left "></i><i class="half-star right "></i></li>
     <li>
-<i class="half-star left "></i><i class="half-star right "></i>    </li>
+<i class="half-star left "></i><i class="half-star right "></i></li>
     <li>
-<i class="half-star left "></i><i class="half-star right "></i>    </li>
+<i class="half-star left "></i><i class="half-star right "></i></li>
     <li>
-<i class="half-star left "></i><i class="half-star right "></i>    </li>
+<i class="half-star left "></i><i class="half-star right "></i></li>
     <li>
-<i class="half-star left "></i><i class="half-star right "></i>    </li>
+<i class="half-star left "></i><i class="half-star right "></i></li>
 </ul>
 
     </div>

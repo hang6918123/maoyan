@@ -44,8 +44,7 @@ class PowerMiddleware
 	        if(in_array($ask_method,$arr)){
 	            return $next($request);
 	        }
-	    }
-        
+	    }        
         return back(); 
     }
 }

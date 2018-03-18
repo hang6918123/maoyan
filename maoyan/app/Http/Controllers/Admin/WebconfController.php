@@ -61,7 +61,7 @@ class WebconfController extends Controller
                     if($res){
                         //入库成功后删除旧海报
                         $old_logo = $request->old_logo;
-                        unlink(public_path().'\home\images\\'.$old_poster);
+                        unlink(public_path().'\home\images\\'.$old_logo);
                         //将配置文件中的内容写入config目录下的web.php文件   方便后期读取网站配置
                         $config = Webconf::find(1)->toArray();
                         $str = '<?php return '.var_export($config,true).';';

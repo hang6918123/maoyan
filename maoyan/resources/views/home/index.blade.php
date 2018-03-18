@@ -102,6 +102,7 @@
     </div>
     <div class="panel-content">
             <ul class="ranking-wrapper ranking-mostExpect">
+      
       @foreach($think as $k => $v)
       @if($k == 0)
             <li  class="ranking-item ranking-top ranking-index-1">

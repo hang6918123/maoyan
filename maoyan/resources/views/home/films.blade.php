@@ -9,30 +9,6 @@
 @section('content')
 
 
-<!-- <div class="subnav">
->>>>>>> be38cc6651baac4bf4b4bc894bef58982365bc22
-  <ul class="navbar">
-    <li>
-      <a data-act="subnav-click" data-val="{subnavClick:1}"
-          data-state-val="{subnavId:1}"
-          class="active" href="javascript:void(0);"
-      >正在热映</a>
-    </li>
-    <li>
-      <a data-act="subnav-click" data-val="{subnavClick:2}"
-          href="?showType=2"
-      >即将上映</a>
-    </li>
-    <li>
-      <a data-act="subnav-click" data-val="{subnavClick:3}"
-          href="?showType=3"
-      >经典影片</a>
-    </li>
-  </ul>
-<<<<<<< HEAD
-</div>
-=======
-</div> -->
 
 
     <div class="container" id="app" class="page-movie/list" >
@@ -182,9 +158,9 @@
         <img data-src="/upload/videos/{{$v['photo']}}" style="width:100%;height:100%;" />
       </div>
       </a>
-        <div class="channel-action channel-action-sale">
-  <a>{{state($v['state'])}}</a>
-</div>
+        
+  @if(state($v['state'])!='预售票') <div class="channel-action channel-action-sale"><a>{{state($v['state'])}}</a></div> @endif
+
 
       <div class="movie-ver">
         @if(strrchr($v['language'],'3'))

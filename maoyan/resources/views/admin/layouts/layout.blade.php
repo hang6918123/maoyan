@@ -36,7 +36,7 @@
 <link rel="stylesheet" type="text/css" href="/admin/css/mws-theme.css" media="screen">
 <link rel="stylesheet" type="text/css" href="/admin/css/themer.css" media="screen">
 
-<title>MWS Admin - Files</title>
+<title>后台管理</title>
 
 </head>
 
