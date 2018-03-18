@@ -25,6 +25,7 @@ class StoreBlogPostRequest extends Request
     {
         return [
             'name' => 'required|unique:videos,name',
+            'star' => 'required|regex:/\W/',
             'type' => 'required',
             'content' => 'required|max:255',
             'region' => 'regex:/\W/',
@@ -33,6 +34,7 @@ class StoreBlogPostRequest extends Request
             'day1' => 'regex:/^[1-9]/|numeric',
             'language' => 'regex:/\W/',
             'time' => 'required|numeric|min:5400',          //影片时间不能为空,数值型,不能小于5400
+            'money' => 'required|numeric',          //影片价格不能为空,数值型,不能小于5400
             'photo' => 'required|mimes:jpeg,jpg,png|max:3072',
             'state' => 'between:0,3',
         ];
@@ -47,6 +49,8 @@ class StoreBlogPostRequest extends Request
     {
         return [
             'name.required' => '影片名必填',
+            'star.required' => '影片主演必填',
+            'star.regex' => '影片主演类型不正确',
             'name.unique' => '影片名已存在',
             'type.required'  => '电影类型必选',
             'content.required'  => '电影简介为空',
@@ -59,6 +63,8 @@ class StoreBlogPostRequest extends Request
             'day1.regex'  => '电影上映时间日必选',
             'day1.numeric'  => '电影上映时间日必须为数字',
             'language.regex'  => '电影语言版本必选',
+            'money.required'  => '电影单价必填',
+            'money.numeric'  => '电影单价必须是数字',
             'time.required'  => '电影时长必填',
             'time.numeric'  => '电影时长必须是数字',
             'time.min'  => '电影时长不能小于5400秒(90分钟)',

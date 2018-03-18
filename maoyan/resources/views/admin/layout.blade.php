@@ -8,23 +8,23 @@
 
 <!-- Viewport Metatag -->
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<meta name="csrf-token" content="{{ csrf_token() }}">
+
 <!-- Plugin Stylesheets first to ease overrides -->
 <link rel="stylesheet" type="text/css" href="/admin/plugins/colorpicker/colorpicker.css" media="screen">
 <link rel="stylesheet" href="/admin/plugins/plupload/jquery.plupload.queue.css" media="screen">
-<link rel="stylesheet" href="/admin/plugins/elfinder/css/elfinder.css" media="screen" >
+<link rel="stylesheet" href="/admin/plugins/elfinder/css/elfinder.css"media="screen" >
 
 <!-- Required Stylesheets -->
 <link rel="stylesheet" type="text/css" href="/admin/bootstrap/css/bootstrap.min.css" media="screen">
 <link rel="stylesheet" type="text/css" href="/admin/css/fonts/ptsans/stylesheet.css" media="screen">
 <link rel="stylesheet" type="text/css" href="/admin/css/fonts/icomoon/style.css" media="screen">
-
-<link rel="stylesheet" type="text/css" href="/admin/css/mws-style.css" media="screen">
-<link rel="stylesheet" type="text/css" href="/admin/css/icons/icol16.css" media="screen">
-<link rel="stylesheet" type="text/css" href="/admin/css/icons/icol32.css" media="screen">
 @section('css')
 
 @show
+<link rel="stylesheet" type="text/css" href="/admin/css/mws-style.css" media="screen">
+<link rel="stylesheet" type="text/css" href="/admin/css/icons/icol16.css" media="screen">
+<link rel="stylesheet" type="text/css" href="/admin/css/icons/icol32.css" media="screen">
+
 <!-- Demo and Plugin Stylesheets -->
 <link rel="stylesheet" type="text/css" href="/admin/css/demo.css" media="screen">
 
@@ -36,7 +36,7 @@
 <link rel="stylesheet" type="text/css" href="/admin/css/mws-theme.css" media="screen">
 <link rel="stylesheet" type="text/css" href="/admin/css/themer.css" media="screen">
 
-<title>MWS Admin - Files</title>
+<title>{{Config::get('app.title')}}</title>
 
 </head>
 
@@ -49,7 +49,7 @@
         
         	<!-- Logo Wrapper, images put within this wrapper will always be vertically centered -->
         	<div id="mws-logo-wrap">
-            	<a href="/admin/index"><img src="/admin/images/logo.png" alt="mws admin"></a>
+            	<img src="/admin/images/logo.png" alt="mws admin">
 			</div>
         </div>
         
@@ -60,16 +60,18 @@
             
             	<!-- User Photo -->
             	<div id="mws-user-photo">
-                	<img src="/uploads/user/{{session()->get('a_photo')}}" alt="User Photo">
+                	<img src="/admin/example/profile.jpg" alt="User Photo">
                 </div>
                 
                 <!-- Username and Functions -->
                 <div id="mws-user-functions">
                     <div id="mws-username">
-                        {{session()->get('a_name')}}
+                        Hello, John Doe
                     </div>
                     <ul>
-                        <li><a href="/admin/login/out">退出</a></li>
+                    	<li><a href="#">Profile</a></li>
+                        <li><a href="#">Change Password</a></li>
+                        <li><a href="index.html">Logout</a></li>
                     </ul>
                 </div>
             </div>
@@ -98,9 +100,8 @@
                     <li>
                         <a href="#"><i class="icon-user"></i>用户管理</a>
                         <ul class="closed">
-                            <li><a href="/admin/user">用户列表</a></li>
-                            <li><a href="/admin/user/create">添加用户</a></li>
-                            <li><a href="/admin/auth">岗位权限</a></li>
+                            <li><a href="form_layouts.html">用户列表</a></li>
+                            <li><a href="form_elements.html">添加用户</a></li>
                         </ul>
                     </li>
                     <li>
@@ -112,17 +113,8 @@
                     <li>
                         <a href="#"><i class="icon-home"></i>影院管理</a>
                         <ul class="closed">
-                            <li><a href="/admin/cineman">影院列表</a></li>
-                            <li><a href="/admin/cineman/add">添加影院</a></li>
-                            <li><a href="/admin/cineman/update">修改影院</a></li>
-                            <li><a href="/admin/cineman/delete">影院回收站</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#"><i class="icon-home"></i>影厅管理</a>
-                        <ul class="closed">
-                            <li><a href="/admin/movie">电影上架</a></li>
-                            <li><a href="/admin/movie/delete">电影下架</a></li>
+                            <li><a href="/admin/video">影院列表</a></li>
+                            <li><a href="form_elements.html">添加影院</a></li>
                         </ul>
                     </li>
                     <li>
@@ -134,30 +126,24 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="#"><i class="icon-bars"></i>轮播图管理</a>
+                        <a href="#"><i class="icon-bars"></i>排行管理</a>
                         <ul class="closed">
-                            <li><a href="/admin/carousel/add">添加轮播图</a></li>
-                            <li><a href="/admin/carousel/edit">选择轮播图</a></li>
+                            <li><a href="form_layouts.html">影片列表</a></li>
+                            <li><a href="form_elements.html">添加影片</a></li>
                         </ul>
                     </li>
                     <li>
                         <a href="#"><i class="icon-bullhorn"></i>资讯管理</a>
                         <ul class="closed">
-                            <li><a href="/admin/news">资讯列表</a></li>
-                            <li><a href="/admin/news/create">添加资讯</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#"><i class="icon-attachment"></i>友情链接</a>
-                        <ul class="closed">
-                            <li><a href="/admin/link">链接列表</a></li>
-                            <li><a href="/admin/link/create">添加链接</a></li>
+                            <li><a href="form_layouts.html">资讯列表</a></li>
+                            <li><a href="form_elements.html">添加资讯</a></li>
                         </ul>
                     </li>
                     <li>
                         <a href="#"><i class="icon-wrench"></i>站点配置</a>
                         <ul class="closed">
-                            <li><a href="/admin/webconf">配置列表</a></li>
+                            <li><a href="form_layouts.html">影片列表</a></li>
+                            <li><a href="form_elements.html">添加影片</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -169,6 +155,29 @@
         
         	<!-- Inner Container Start -->
             <div class="container">
+                @if (count($errors) > 0)
+                    <div class="mws-form-message error">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+                @if(session('serror'))
+                <div class="mws-form-message error">
+                                <ul>
+                                   <li>{{session('serror')}}</li>
+                                </ul>
+                            </div>
+                @endif
+                @if(session('success'))
+                            <div class="mws-form-message success">
+                                <ol>
+                                    <li>{{session('success')}}</li>
+                                </ol>
+                            </div>
+                @endif
             	@section('main')
                 
                             
@@ -216,8 +225,9 @@
 
     <!-- Demo Scripts (remove if not needed) -->
     <script src="/admin/js/demo/demo.files.js"></script>
-@section('buttom')
+    @section('js')
 
-@show               
+    @show
+
 </body>
 </html>

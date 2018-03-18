@@ -33,7 +33,7 @@
                                    <div class="mws-form-row">
                                         <label class="mws-form-label">订单时间</label>
                                         <div class="mws-form-item">
-                                             <input type="text" name="name" class="small" value="{{$data->time}}" class="form-control"  readonly>
+                                             <input type="text" name="name" class="small" value="{{$data->order_time}}" class="form-control"  readonly>
                                         </div>
                                    </div>
                                    <div class="mws-form-row">

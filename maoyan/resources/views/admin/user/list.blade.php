@@ -47,7 +47,8 @@
                                 @endif
                                 <a href="/admin/user/show/{{$user->id}}" class="btn" title="修改"><i class="icon-pencil"></i></a>
                                 <a href="#" class="btn user_del" data="{{$user->id}}" title="删除"><i class="icon-trash"></i></a>
-                                <a href="#" class="btn" data="{{$user->id}}" title="评价"><i class="icon-comment"></i></a>
+                                <a href="/admin/score/info/user/{{$user->id}}" class="btn" title="查看用户评价">
+                                            <i  class="icon-feather"></i></a>
                             </span>
                         </td>
                     </tr>

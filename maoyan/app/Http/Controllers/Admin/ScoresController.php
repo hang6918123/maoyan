@@ -14,7 +14,8 @@ class ScoresController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
+     *$where 查询条件 只接受user和video
+     *$id 用户或者电影id
      * @return \Illuminate\Http\Response
      */
     public function getInfo($where,$id)

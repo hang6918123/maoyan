@@ -20,8 +20,6 @@ Route::group(['middleware'=>'homeLogin'],function(){
 });
 //前台资讯
 Route::controller('news','Home\NewsController');
-// 前台影片路由
-Route::resource('films','Home\VideosController');
 //前台路由主页
 Route::get('/','Home\IndexController@index');
 
@@ -73,3 +71,15 @@ Route::get('/cinemas/seekt','home\CinemasController@seekt');
 Route::get('/cinemas/seekte','home\CinemasController@seekte');
 Route::controller('/cinemas','home\CinemasController');
 
+
+
+
+
+// 前台影片路由
+Route::resource('/films','Home\VideosController');
+// 前台影片评论ajax
+Route::controller('/film','Home\VideosController');
+// 前台榜单
+Route::controller('/board','Home\BoardController');
+// 前台搜索
+Route::get('/query','Home\BoardController@query');

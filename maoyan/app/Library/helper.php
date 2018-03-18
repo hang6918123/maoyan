@@ -24,8 +24,11 @@ function score($score){
 	if(empty($score)){
 		return '<div class="channel-detail channel-detail-orange">暂无评分</div>';
 	}else{
-		$arr = explode('.',$score);
-		return '<div class="channel-detail channel-detail-orange"><i class="integer">'.$arr[0].'.</i><i class="fraction">'.$arr[1].'</i></div>';
+		if(strpos($score,'.') == 0){
+			$score = $score.'.0';
+		}
+			$arr = explode('.',$score);
+			return '<div class="channel-detail channel-detail-orange"><i class="integer">'.$arr[0].'.</i><i class="fraction">'.$arr[1].'</i></div>';
 	}
 }
 //影片状态
@@ -41,13 +44,22 @@ function state($v){
 	}
 }
 //判断$_GET内是多少数组并进行url拼接
-function get_url($k,$v,$get,$id,$path){
-			
-			
+function get_url($url){
+	foreach($url as $k => $v){
+		if(empty($v)){
+			unset($url[$k]);
+		}
+	}
+	return $url;		
 }
 //电影路径处理
 //$get
 function pth($get,$id,$path){
+	foreach($get as $k=>$v){
+		if($k == 'page'){
+			unset($get[$k]);
+		}
+	}
 		if($id == 0){
 			unset($get[$path]);
 			return	http_build_query($get);
@@ -194,4 +206,42 @@ function pth($get,$id,$path){
 		}
 		}
 	}
+}
+
+//用户评分分类
+function pingfen($f){
+	if($f>=0&&$f<=2){
+		return $f.'分 , 超烂啊';
+	}elseif($f>=3&&$f<=4){
+		return $f.'分 , 比较差';
+	}elseif($f>=5&&$f<=6){
+		return $f .'分 , 一般般';
+	}elseif($f>=7&&$f<=8){
+		return $f.'分 , 比较好';
+	}elseif($f>=9&&$f<=10){
+		return $f.'分 , 完美';
+	}
+
+}
+//想看影片人数
+function films_think($think){
+	return DB::table('videoscore')->where('vid',$think)->where('think','>',0)->get();
+}
+
+//今日票房
+function day_box($box=0,$where){
+	if($where == 'vid'){
+		$n = DB::selectRaw('select count(vid) from orders where vid = '.$box);
+	}elseif($where == 'pan'){
+		$year = date("Y");
+		$month = date("m");
+		$day = date("d");
+		$start = date(mktime(0,0,0,$month,$day,$year));//当天开始时间戳
+		$end= date(mktime(23,59,59,$month,$day,$year));//当天结束时间戳
+		$n = DB::table('orders')->where('order_time','>=',$start)->where('order_time','<=',$end)->selectRaw('count(id)')->get();
+	}
+	foreach($n as $k =>$v){
+		return $v['count(id)'];
+	}
+
 }

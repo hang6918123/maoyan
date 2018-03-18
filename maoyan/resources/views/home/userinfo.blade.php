@@ -80,7 +80,11 @@
             alert("请选择图片文件");
             return;
         }
+<<<<<<< HEAD
         //判断上传文件大小
+=======
+
+>>>>>>> be38cc6651baac4bf4b4bc894bef58982365bc22
         var size = $("#fileUpload")[0].files[0].size;
         if(size > (2 * 1024 * 1024)){
         	alert("文件大小不能超过2M");

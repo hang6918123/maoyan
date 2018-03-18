@@ -16,11 +16,5 @@ class videos extends Model
 
     	return $this->hasMany('App\Models\videoscore','uid');
     }
-    
-
-     public function usv()
-    {
-        return $this->belongsToMany('App\Models\videoscore','videoscore','vid','uid');
-    }
 
 }
