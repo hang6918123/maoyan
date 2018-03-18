@@ -17,7 +17,7 @@
 <div class="banner">
   <div class="slider single-item slider-banner">
     @foreach($car as $k => $v)
-  <a target="_blank" data-act="bannerNews-click" href="/films/news/33818" data-bgUrl="{{$v['carousel_path']}}"></a>
+  <a target="_blank" data-act="bannerNews-click" " data-bgUrl="{{$v['carousel_path']}}"></a>
   @endforeach
 </div>
 

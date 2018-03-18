@@ -708,7 +708,7 @@ val = {"id":1182552};    window.system = {"user":{"id":{{session('id')}},"token"
   @foreach($news as $k => $v)
   <dd class="news-item" data-act="new-click" data-val="{newsid:35226}">
     <div class="news-img">
-      <a href="/films/news/35226" target="_blank">
+      <a href="/news/one/{{$v['id']}}" target="_blank">
         <!-- <img class="news-img-default" src="/home/{{$v['poster']}}" /> -->
         <img class="news-img-detail" data-src="/home/{{$v['poster']}}" style="width:140px;height: 86px;" />
       </a>
