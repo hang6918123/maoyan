@@ -16,7 +16,6 @@ class Cinemas extends Model
 	{
 		 return $this->hasMany('App\Models\Movie','cinemas_id'); 
 	}
-
 //影院对电影关系多对多
 	public function cinemas_videos()
 	{

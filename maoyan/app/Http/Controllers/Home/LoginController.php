@@ -90,9 +90,6 @@ class LoginController extends Controller
         session()->put('name',$data->name);
         session()->put('phone',$data->phone);
         session()->put('photo',$data->photo);
-        //压入redis
-        $datas = json_encode($data);
-        Redis::hset('users',$data->id,$datas);
         return redirect('/');
 
     }

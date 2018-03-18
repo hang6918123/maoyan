@@ -21,6 +21,12 @@
                                         </div>
                                    </div>
                                    <div class="mws-form-row">
+                                        <label class="mws-form-label">影片主演</label>
+                                        <div class="mws-form-item">
+                                             <input type="text" name="star" class="small" value="{{$data['star']}}">
+                                        </div>
+                                   </div>
+                                   <div class="mws-form-row">
                                         <label class="mws-form-label">影片类型</label>
                                         <div class="mws-form-item clearfix">
                                              <ul class="mws-form-list inline">
@@ -29,6 +35,12 @@
                                                   @foreach($type as $k=>$v) @if($v == vtype()[$a])  checked @endif @endforeach   ><label>{{vtype()[$a]}}</label></li>
                                                   @endfor
                                              </ul>
+                                        </div>
+                                   </div>
+                                   <div class="mws-form-row">
+                                        <label class="mws-form-label">影片单价 (单位：元)</label>
+                                        <div class="mws-form-item">
+                                             <input type="number" class="small" name="money" value="{{$data['money']}}">
                                         </div>
                                    </div>
                                    <div class="mws-form-row">
@@ -45,7 +57,7 @@
                                    <div class="mws-form-row">
                                         <label class="mws-form-label">电影简介</label>
                                         <div class="mws-form-item">
-                                             <textarea rows="" name="content" cols="" class="large">{{$data['content']}}</textarea>
+                                             <textarea rows="" name="content" cols="" class="large">{{$data['films_content']}}</textarea>
                                         </div>
                                    </div>
                                    <div class="mws-form-row">
@@ -125,7 +137,7 @@
                 <div class="date-picker userexinfo-form-section"></div>
 <img src="" id="img1" alt="">
 @endsection
-@section('js')
+@section('buttom')
 
 <script>
      // 年月日三级联动

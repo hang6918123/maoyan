@@ -1,7 +1,10 @@
 @extends('admin/layouts.layout')
+@section('css')
 <script language="javascript" src="/admin/js/YMDClass.js"></script>
 <meta name="csrf-token" content="{{csrf_token()}}">
+@endsection
 @section('main')
+
 <div class="mws-panel grid_8">
                 	<div class="mws-panel-header">
                     	<span>{{$title}}</span>
@@ -12,9 +15,15 @@
                               {{csrf_field()}}
                     		<div class="mws-form-inline">
                     			<div class="mws-form-row">
-                    				<label class="mws-form-label">影片名</label>
+                                        <label class="mws-form-label">影片名</label>
+                                        <div class="mws-form-item">
+                                             <input type="text" name="name" class="small" value="{{old('name')}}">
+                                        </div>
+                                   </div>
+                                   <div class="mws-form-row">
+                    				<label class="mws-form-label">影片主演</label>
                     				<div class="mws-form-item">
-                    					<input type="text" name="name" class="small" value="{{old('name')}}">
+                    					<input type="text" name="star" class="small" value="{{old('star')}}">
                     				</div>
                     			</div>
                     			<div class="mws-form-row">
@@ -27,6 +36,14 @@
                     					</ul>
                     				</div>
                     			</div>
+                                   <div class="mws-form-row">
+                                        <label class="mws-form-label">影片单价 (单位：元)</label>
+                                        <div class="mws-form-item clearfix">
+                                             <ul class="mws-form-list inline">
+                                                  <input type="number" class="small" name="money" value="{{old('money')}}">
+                                             </ul>
+                                        </div>
+                                   </div>
                     			<div class="mws-form-row">
                                         <label class="mws-form-label">上映地区</label>
                                         <div class="mws-form-item">
@@ -101,9 +118,8 @@
                     </div>    	
                 </div>
                 <div class="date-picker userexinfo-form-section"></div>
-<img src="" id="img1" alt="">
 @endsection
-@section('js')
+@section('buttom')
 
 <script>
      // 年月日三级联动

@@ -74,7 +74,9 @@
                                     <td class=" "><a herf="#" style="color:red">{{  
 
                                     substr($v['cinema_movie'],strpos($v['cinema_movie'],',')+1) }}</a></td>
+
                                     <td class=" ">{{$v['cinema_money']}}</td>
+
                                     <td class=" ">{{$v['address']}}</td>
                                     <td class=" ">{{$v['phone']}}</td>
                                     

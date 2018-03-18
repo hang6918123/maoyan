@@ -37,9 +37,8 @@ $('.user_del').click(function(){
             data: {"uid":uid},
             dataType: "json",
             success: function(data){
-                $('.success').css("display","block");
-                $('.success').html('<font style="vertical-align: inherit;">'+data.str+'</font>');
                 $('tr[data='+data.id+']').remove();
+                alert(data.str);
             },
             error: function(XMLHttpRequest, textStatus, errorThrown){
                 $('.error').css('display','block');

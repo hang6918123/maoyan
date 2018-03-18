@@ -18,7 +18,6 @@ class CinemanController extends Controller
 
         $page = $request -> input('cineman_count',5);
         $search = $request -> input('cineman_seek','');
-        // dd($request->all());
         if(!empty($search)){
            $cinema = Cinemas::orderBy('cinema_name','asc')
            ->where('cinema_name','like','%'.$search.'%')

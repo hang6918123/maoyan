@@ -73,6 +73,8 @@ class VideosController extends Controller
         $years = $request->input('year1').'-'.$request->input('month1').'-'.$request->input('day1');
         $language = $request->input('language');
         $time = $request->input('time');
+        $star = $request->input('star');
+        $money = $request->input('money');
         $content = $request->input('content');
         $state = $request->input('state');
         // dd($request->all());
@@ -87,10 +89,12 @@ class VideosController extends Controller
         $videos = new Videos;
         $videos -> name = $name;
         $videos -> type = $type;
+        $videos -> star = $star;
         $videos -> region = $region;
         $videos -> years = $years;
         $videos -> time = $time;
-        $videos -> content = $content;
+        $videos -> money = $money;
+        $videos -> films_content = $content;
         $videos -> photo = $photo;
         $videos -> language = $language;
         $videos -> state = $state;
@@ -151,14 +155,17 @@ class VideosController extends Controller
         $this->validate($request, [
             
         'name' => 'required',
+        'star' => 'required',
             'type' => 'required',
             'content' => 'required',
             'region' => 'regex:/\W/',
             'language' => 'regex:/\W/',
             'time' => 'required|numeric|min:5400',          //影片时间不能为空,数值型,不能小于5400
+            'money' => 'required|numeric',          //影片时间不能为空,数值型,不能小于5400
             'state' => 'between:0,3',
     ],[
         'name.required' => '影片名必填',
+        'name.required' => '影片主演必填',
             'name.unique' => '影片名已存在',
             'type.required'  => '电影类型必选',
             'content.required'  => '电影简介不能为空',
@@ -167,6 +174,8 @@ class VideosController extends Controller
             'year1.numeric'  => '电影上映时间年必须为数字',
             'day1.numeric'  => '电影上映时间日必须为数字',
             'language.regex'  => '电影语言版本必选',
+            'money.required'  => '电影单价必填',
+            'money.numeric'  => '电影单价必须是数字',
             'time.required'  => '电影时长必填',
             'time.numeric'  => '电影时长必须是数字',
             'time.min'  => '电影时长不能小于5400秒(90分钟)',
@@ -177,11 +186,13 @@ class VideosController extends Controller
     ]);
         // 接受参数
         $name = $request->input('name');
+        $star = $request->input('star');
         $type = implode('-',$request->input('type'));
         $region = $request->input('region');
         $language = $request->input('language');
         $content = $request->input('content');
         $time = $request->input('time');
+        $money = $request->input('money');
         if(empty($request->input('year1')) && empty($request->input('month1')) && empty($request->input('day1'))){
             $years = $request->input('years');
         }else{
@@ -207,11 +218,13 @@ class VideosController extends Controller
         }
         $videos =  Videos::where('id',$id)->first();
         $videos -> name = $name;
+        $videos -> star = $star;
         $videos -> type = $type;
         $videos -> region = $region;
         $videos -> years = $years;
         $videos -> time = $time;
-        $videos -> content = $content;
+        $videos -> money = $money;
+        $videos -> films_content = $content;
         $videos -> photo = $photo;
         $videos -> language = $language;
         $videos -> state = $state;
@@ -230,7 +243,7 @@ class VideosController extends Controller
      */
     public function destroy($id)
     {
-        $photo = Videos::where('id',$id)->first()-> photo;
+        $photo = Videos::where('id',$id)->first()->photo;
         $score = DB::table('videoscore')->where('vid',$id)->delete();
         $videos = Videos::where('id',$id)->forceDelete();
 

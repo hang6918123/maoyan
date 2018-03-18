@@ -123,7 +123,7 @@
 
                         $total_price = $('#total_price'); //票价总额
 
-
+                     
 
                 var sc = $('#seat_area').seatCharts({
 
@@ -228,8 +228,11 @@
                 });
 
                 //设置已售出的座位
+               
+                
+              var bb = JSON.parse({{$arrayy}});
 
-               // sc.get(['1_3', '1_4', '4_4', '4_5', '4_6', '4_7', '4_8']).status('unavailable');
+               sc.get(bb).status('unavailable');
 
 
 

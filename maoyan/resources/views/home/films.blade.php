@@ -1,5 +1,5 @@
 @extends('home/layouts.layout')
-$section('css')
+@section('css')
 <link rel="stylesheet" href="/home/css/movie-list.ffb4de4a.css"/>
 <link rel="stylesheet" href="/home/css/common.4b838ec3_1.css"/>
 <link rel="stylesheet" href="/home/css/movie-list.ffb4de4a.css"/>
@@ -9,7 +9,8 @@ $section('css')
 @section('content')
 
 
-<div class="subnav">
+<!-- <div class="subnav">
+>>>>>>> be38cc6651baac4bf4b4bc894bef58982365bc22
   <ul class="navbar">
     <li>
       <a data-act="subnav-click" data-val="{subnavClick:1}"
@@ -28,7 +29,10 @@ $section('css')
       >经典影片</a>
     </li>
   </ul>
+<<<<<<< HEAD
 </div>
+=======
+</div> -->
 
 
     <div class="container" id="app" class="page-movie/list" >
@@ -50,7 +54,7 @@ $section('css')
             >全部</a>
           </li>
             @foreach(vtype() as $k=>$v)
-          <li @if($catId == $v)
+          <li @if($catId == ($k+1))
                 class="active"
                 @endif >
             <a data-act="tag-click" data-val="{TagName:'{{$v}}'}"
@@ -64,18 +68,18 @@ $section('css')
       <li class="tags-line tags-line-border" id="source" data-val="{tagTypeName:'source'}">
         <div class="tags-title">区域 :</div>
         <ul class="tags">
-          <li @if($scoureId == null)
+          <li @if($sourceId == null)
                 class="active"
                 @endif data-state-val="{ sourceTagName:'全部'}" >
             <a data-act="tag-click" data-val="{TagName:'全部'}"
-                @if($scoureId != null)
+                @if($sourceId != null)
                 href="/films?{{ pth($get,0,'sourceId')}}"
                 @endif
                  style="cursor: default"
             >全部</a>
           </li>
-          @foreach(vregion() as $k => $v)
-          <li @if($scoureId == $v)
+          @foreach(vregion() as $k=>$v)
+          <li @if($sourceId == ($k+1))
                 class="active"
                 @endif >
             <a data-act="tag-click" data-val="{TagName:'{{$v}}'}"
@@ -100,8 +104,8 @@ $section('css')
                 @endif  style="cursor: default"
             >全部</a>
           </li>
-          @foreach(year() as $k => $v)
-          <li @if($yearId == $v)
+          @foreach(year() as $k=>$v)
+          <li @if($yearId == ($k+1))
                 class="active"
                 @endif>
             <a data-act="tag-click"
@@ -172,7 +176,7 @@ $section('css')
   @foreach($data as $k => $v)
   <dd>
     <div class="movie-item">
-      <a href="/films/{{$v['id']}}" target="_blank" data-act="movie-click" data-val="{movieid:1182552}">
+      <a href="/films/{{$v['id']}}" data-act="movie-click" data-val="{movieid:1182552}">
       <div class="movie-poster">
         <img class="poster-default" src="/home/picture/loading_2.e3d934bf_1.png" />
         <img data-src="/upload/videos/{{$v['photo']}}" style="width:100%;height:100%;" />
@@ -183,7 +187,7 @@ $section('css')
 </div>
 
       <div class="movie-ver">
-        @if(strrchr(vlanguage()[$k],'3'))
+        @if(strrchr($v['language'],'3'))
         <i class="imax3d"></i>
         @endif
       </div>
@@ -191,7 +195,7 @@ $section('css')
     <div class="channel-detail movie-item-title" title="{{$v['name']}}">
       <a href="/films/1182552" target="_blank" data-act="movies-click" data-val="{movieId:1182552}">{{$v['name']}}</a>
     </div>
-    {!!score($v['score'])!!}
+    {!!score($v['u_score'])!!}
   
 @endforeach
   
@@ -210,7 +214,7 @@ $section('css')
      
 
   
-{!! $data->render() !!}
+{!! $data->appends(get_url(['catId' =>$catId,'sourceId'=>$sourceId,'yearId'=>$yearId,'sortId'=>$sortId]))->render() !!}
 
 </li>
 </ul>
@@ -229,7 +233,7 @@ $section('css')
     <script src="/home/js/common.1faad3f9_1.js"></script>
     <script src="/home/js/movie-list.195190ba.js"></script>
    <script type="text/javascript">
-  $('.navbar li a:contains(电影)').toggleClass('active');
+  $('.navbar li a:contains(电影)').addClass('active');
   // var path = location.search;
   // var p = path.length;
   // var cat = path.lastIndexOf('catId=');

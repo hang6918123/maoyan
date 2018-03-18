@@ -1,4 +1,4 @@
-@extends('admin.layouts.layout');
+@extends('admin/layouts/layout')
 @section('css')
 <link rel="stylesheet" type="text/css" href="/admin/css/page_page.css">
 @endsection
@@ -32,7 +32,7 @@
                                     <td class="">{{$v['id']}}</td>
                                     <td class=" ">{{$v['name']}}</td>
                                     <td class=" ">{{$v['phone']}}</td>
-                                    <td class=" ">{{$v['time']}}</td>
+                                    <td class=" ">{{$v['order_time']}}</td>
                                     <td class=" ">{{$v['number']}}</td>
                                     <td class=" ">@if($v['state'] == 0) 交易成功 @elseif($v['state'] == 1) 交易关闭 @elseif($v['state'] == 2) 待付款 @endif </td>
                                     <td class=" ">

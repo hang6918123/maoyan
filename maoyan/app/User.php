@@ -46,9 +46,9 @@ class User extends Model implements AuthenticatableContract,
         return $this->hasMany('App\Models\videoscore','uid');
     }
 
-     public function usv()
+     public function score()
     {
-        return $this->belongsToMany('App\Models\videoscore','videoscore','uid','vid');
+        return $this->morphMany('App\Models\videoscore','videoscore','id','uid');
            
     }
 }

@@ -36,7 +36,6 @@
               <a  href="#" >全部</a>
             </li>
             
-            
           </ul>
         </li>
         <li class="tags-line tags-line-border" data-type="hallType">
@@ -77,39 +76,7 @@
 
 </div>
 
-<script id="comment-form-container" type="text/template">
-  <form id="comment-form" data-val="{movieid:}">
-    <div class="score-msg-container ">
-        <div class="score"><span class="num"></span>分</div>
-        <div class="score-message"></div>
-        <div class="no-score">
-          请点击星星评分
-        </div>
-    </div>
-    <div class="score-star-contaienr">
-      <ul class="score-star clearfix" data-score="">
-    <li>
-<i class="half-star left "></i><i class="half-star right "></i>    </li>
-    <li>
-<i class="half-star left "></i><i class="half-star right "></i>    </li>
-    <li>
-<i class="half-star left "></i><i class="half-star right "></i>    </li>
-    <li>
-<i class="half-star left "></i><i class="half-star right "></i>    </li>
-    <li>
-<i class="half-star left "></i><i class="half-star right "></i>    </li>
-</ul>
 
-    </div>
-    <div class="content-container">
-      <textarea placeholder="快来说说你的看法吧" name="content" id="" cols="30" rows="10"></textarea>
-      <span class="word-count-info"></span>
-    </div>
-    <input type="hidden" name="score" />
-    <input class="btn" type="submit" value="提交" data-act="comment-submit-click" />
-  </form>
-  <div class="close">×</div>
-</script>
     </div>
 <script type="text/javascript">
   $('.navbar li a:contains(影院)').toggleClass('active');

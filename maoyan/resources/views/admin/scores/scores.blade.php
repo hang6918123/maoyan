@@ -1,4 +1,4 @@
-@extends('admin.layouts.layout');
+@extends('admin.layouts.layout')
 @section('css')
 <link rel="stylesheet" type="text/css" href="/admin/css/page_page.css">
 @endsection
@@ -47,7 +47,7 @@
                     <div class="mws-form-row">
                          <label class="mws-form-label">影片评分</label>
                          <div class="mws-form-item">
-                              <input type="text" name="name" class="small" value="{{$v['score']}}" class="form-control"  readonly>
+                              <input type="text" name="name" class="small" value="{{$v['u_score']}}" class="form-control"  readonly>
                          </div>
                     </div>
                </div>
@@ -71,7 +71,7 @@
                     <div class="mws-form-row">
                          <label class="mws-form-label">评价内容</label>
                          <div class="mws-form-item">
-                               <textarea rows="" name="content" cols="" class="large small" readonly>{{$v['content']}}</textarea>
+                               <textarea rows="" name="content" cols="" class="large small" readonly>{{$v['u_content']}}</textarea>
                          </div>
                     </div>
                </div>
@@ -100,7 +100,7 @@
                     <div class="mws-form-row">
                          <label class="mws-form-label">用户名</label>
                          <div class="mws-form-item">
-                              <input type="text" name="name" class="small" value="{{$data[0]['uname'] or ''}}" class="form-control"  readonly>
+                              <input type="text" name="name" class="small" value="{{$data[0]['uname'] or '该用户没有任何评论'}}" class="form-control"  readonly>
                          </div>
                     </div>
                </div>
@@ -131,7 +131,7 @@
                     <div class="mws-form-row">
                          <label class="mws-form-label">影片评分</label>
                          <div class="mws-form-item">
-                              <input type="text" name="name" class="small" value="{{$v['score']}}" class="form-control"  readonly>
+                              <input type="text" name="name" class="small" value="{{$v['u_score']}}" class="form-control"  readonly>
                          </div>
                     </div>
                </div>
@@ -155,7 +155,7 @@
                     <div class="mws-form-row">
                          <label class="mws-form-label">评价内容</label>
                          <div class="mws-form-item">
-                               <textarea rows="" name="content" cols="" class="large small" readonly>{{$v['content']}}</textarea>
+                               <textarea rows="" name="content" cols="" class="large small" readonly>{{$v['u_content']}}</textarea>
                          </div>
                     </div>
                </div>

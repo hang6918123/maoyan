@@ -1,4 +1,4 @@
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
 
 <!--[if IE 8]><html class="ie8"><![endif]-->
 <!--[if IE 9]><html class="ie9"><![endif]-->
@@ -7,11 +7,12 @@
   <title>
 	@section('title')
 	@show
+    {{config('webconf.title')}}
   </title>
   
 	<meta charset="utf-8">
-	<meta name="keywords" content="电影,电视剧,票房,美剧,猫眼电影,电影排行榜,电影票,经典电影,在线观看">
-	<meta name="description" content="国内观众优选的在线购票平台，用户流行的观影决策平台。">
+	<meta name="keywords" content="{{config('webconf.keyword')}}">
+	<meta name="description" content="{{config('webconf.descride')}}">
 	<meta http-equiv="cleartype" content="yes" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta name="renderer" content="webkit" />
@@ -21,7 +22,7 @@
 	<meta name="format-detection" content="telephone=no" />
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="icon" href="/home/images/maoyan.ico" type="image/x-icon"/>
-
+  <link rel="stylesheet" href="/home/css/common.4b838ec3.css"/>
 	@section('css')
 	@show
 </head>
@@ -29,7 +30,7 @@
 
 <div class="header">
   <div class="header-inner">
-        <a href="/" class="logo" data-act="icon-click"></a>
+        <a href="/" class="logo" data-act="icon-click"><img src="/home/images/{{config('webconf.logo')}}" width="133px" height="80px"></a>
         <div class="city-container" data-val="{currentcityid:1 }" id="asasaas">
 
             <div class="city-selected">
@@ -199,10 +200,9 @@
         
         </div>
 
-
         <div class="nav">
             <ul class="navbar">
-                <li><a href="/" data-act="home-click"  >首页</a></li>
+                <li><a href="/" data-act="home-click" >首页</a></li>
                 <li><a href="/films" data-act="movies-click" >电影</a></li>
                 <li><a href="/cinemas" data-act="cinemas-click" >影院</a></li> 
                 
@@ -217,7 +217,7 @@
               <span class="caret"></span>
               <ul class="user-menu">
                 <li class="text">
-                  <a href="/profile/orders">我的订单</a>
+                  <a href="/cinemas/orders">我的订单</a>
                 </li>
                 <li class="text login-name"><a href="/user">基本信息</a></li>
                 <li class="text"><a href="/login/out" class="J-logout" data-act="logout-click">退出登录</a></li>
@@ -227,10 +227,10 @@
 		@else
 		<div class="user-info">
             <div class="user-avatar J-login">
-				<img class="user_photo" src="/uploads/user/{{session()->get('photo')}}">
+				<img class="user_photo" src="/uploads/user/default.jpg">
 				<span class="caret"></span>
 				<ul class="user-menu">
-					<li><a href="javascript:void 0">登录</a></li>
+					<li><a href="/login">登录</a></li>
 				</ul>
             </div>
         </div>
@@ -259,24 +259,32 @@
 <div class="footer">
     <p class="friendly-links">
         友情链接 :
-        <a href="http://www.meituan.com" data-query="utm_source=wwwmaoyan" target="_blank">美团网</a>
+        @foreach($links as $k=>$v)
+        @if($k > 0)
         <span></span>
-        <a href="http://i.meituan.com/client" data-query="utm_source=wwwmaoyan" target="_blank">美团下载</a>
+        @endif
+        <a href="{{$v['url']}}" target="_blank">{{$v['name']}}</a>
+        
+        @endforeach
     </p>
     <p>
-        &copy;2016
-        猫眼电影 maoyan.com
-        <a href="https://tsm.miit.gov.cn/pages/EnterpriseSearchList_Portal.aspx?type=0&keyword=京ICP证160733号&pageNo=1" target="_blank">京ICP证160733号</a>
-        <a href="http://www.miibeian.gov.cn" target="_blank">京ICP备16022489号-1</a>
-        京公网安备 11010502030881号
-        <a href="/about/licence" target="_blank">网络文化经营许可证</a>
-        <a href="http://www.meituan.com/about/rules" target="_blank">电子公告服务规则</a>
+        {{config('webconf.copyright')}}
     </p>
-    <p>北京猫眼文化传媒有限公司</p>
+    <p>{{config('webconf.company')}}</p>
 </div>
-@section('js')
-
-
-@show
 </body>
 </html>
+<script src="/public/js/jquery-3.3.1.min.js"></script>
+<script>
+    $('.city-container').on({
+        mouseover: function(){
+            $(this).attr('class','city-container active');
+        },
+        mouseout: function(){
+             $(this).attr('class','city-container');
+        }
+    });
+</script>
+@section('js')
+
+@show
