@@ -71,7 +71,7 @@
                              
                                 
                                  @if(isset($special))
-                                  @for($i=0;$i<count($special);$i++)
+                                  @for($i=0;$i<count($special)-1;$i++)
                                   
                                     <div class="mws-form-col-1-8">
                                         <label class="mws-form-label">{{$special[$i]}}电影上架</label>

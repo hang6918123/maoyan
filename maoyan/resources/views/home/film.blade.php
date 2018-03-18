@@ -711,7 +711,7 @@ val = {"id":1182552};    window.system = {"user":{"id":{{session('id')}},"token"
     <div class="news-img">
       <a href="/news/one/{{$v['id']}}" target="_blank">
         <!-- <img class="news-img-default" src="/home/{{$v['poster']}}" /> -->
-        <img class="news-img-detail" data-src="/home/{{$v['poster']}}" style="width:140px;height: 86px;" />
+        <img class="news-img-detail" src="/uploads/news/{{$v['poster']}}" style="width:140px;height: 86px;" />
       </a>
     </div>
     <div class="news-main">

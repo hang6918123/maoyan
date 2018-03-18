@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Users;
+use App\Models\Orders;
 use Input;
 use Validator;
 use Redis;
@@ -89,6 +90,30 @@ class UserController extends Controller
             $user = json_encode($user);
             redis::hset('users',session()->get('id'),$user);
             return '修改成功';
+        }
+    }
+
+    /**
+     * 我的订单
+     *
+     * @return 订单页面
+     */
+    public function getMyorder()
+    {
+        $data = Orders::where('uid',session()->get('id'))->where('state','!=',1)->orderBy('id','desc')->paginate(5);
+        return view('home.myorder',['data'=>$data]);
+    }
+
+    /**
+     * 删除订单
+     *
+     * @return 提示信息
+     */
+    public function postDelorder(request $request)
+    {
+        $res = Orders::where('id',$request->id)->update(['state'=>1]);
+        if($res){
+            return 1;
         }
     }
 }

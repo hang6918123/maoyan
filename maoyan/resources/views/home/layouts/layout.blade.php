@@ -22,6 +22,7 @@
 	<meta name="format-detection" content="telephone=no" />
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="icon" href="/home/images/maoyan.ico" type="image/x-icon"/>
+  <link rel="stylesheet" href="/home/css/common.4b838ec3.css"/>
 	@section('css')
 	@show
 </head>
@@ -216,7 +217,7 @@
               <span class="caret"></span>
               <ul class="user-menu">
                 <li class="text">
-                  <a href="/cinemas/orders">我的订单</a>
+                  <a href="/user/myorder">我的订单</a>
                 </li>
                 <li class="text login-name"><a href="/user">基本信息</a></li>
                 <li class="text"><a href="/login/out" class="J-logout" data-act="logout-click">退出登录</a></li>

@@ -1,5 +1,6 @@
 @extends('home/layouts.layout')
 @section('css')
+<link rel="stylesheet" href="/home/css/common.4b838ec3.css"/>
 <link rel="stylesheet" href="/home/css/home-index.705294ae_1.css"/>
 <script src="/home/js/stat.583e6097_1.js"></script>
   <script src="/home/js/jquery-3.3.1.min.js"></script>

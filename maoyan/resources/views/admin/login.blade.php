@@ -51,9 +51,7 @@
                     <div class="mws-form-row">
                         <div class="mws-form-item">
                             <input type="text" name="code" class="mws-login-code required" placeholder="验证码">
-                            <a id="change" href="/admin/login">
-                                <img src="/home/images/code.jpg"  alt="验证码" title="刷新图片" width="100" height="40" id="code" border="0">
-                            </a>
+                            <img src="/admin/login/captcha/1"  alt="验证码" title="刷新图片" width="100" height="40" id="code" border="0">
                         </div>
                     </div>
                     <div class="mws-form-row">
@@ -67,6 +65,11 @@
 </html>
 <script src="/public/js/jquery-3.3.1.min.js"></script>
 <script>
+    $("#code").click(function(){
+        var url ="/admin/login/captcha/1?a=" + Math.random();
+        $(this).attr('src',url);
+    });
+
     $('.mws-form').submit(function(){
         var name_res = /^\w{2,15}$/;
         var username = $('input[name=username]').val();

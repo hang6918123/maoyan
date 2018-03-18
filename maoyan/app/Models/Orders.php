@@ -14,4 +14,9 @@ class Orders extends Model
     {
         return $this->belongsTo('App\User','uid');
     }
+
+    public function video()
+    {
+    	return $this->hasOne('App\Models\videos','id','vid');
+    }
 }

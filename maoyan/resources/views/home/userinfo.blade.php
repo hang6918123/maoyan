@@ -18,8 +18,8 @@
 			<div class="info-content clearfix">
 				<div class="user-profile-nav">
 					<h1>个人中心</h1>
-					<a href="/profile/orders" class="orders ">我的订单</a>
-					<a href="/profile" class="profile active">基本信息</a>
+					<a href="/user/myorder" class="orders ">我的订单</a>
+					<a href="/user" class="profile active">基本信息</a>
 				</div>
 			  
 				<div class="profile-container">
@@ -80,11 +80,7 @@
             alert("请选择图片文件");
             return;
         }
-<<<<<<< HEAD
-        //判断上传文件大小
-=======
 
->>>>>>> be38cc6651baac4bf4b4bc894bef58982365bc22
         var size = $("#fileUpload")[0].files[0].size;
         if(size > (2 * 1024 * 1024)){
         	alert("文件大小不能超过2M");
