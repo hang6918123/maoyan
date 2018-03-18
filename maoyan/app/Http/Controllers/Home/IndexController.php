@@ -11,7 +11,7 @@ use App\Http\Controllers\Controller;
 class IndexController extends Controller
 {
    
-	public function getIndex(){
+	public function index(){
 		// 查询轮播图数据
 		$carousel = DB::table('carousel')->where('carousel_auth',0)->get();
 		//查询热映影片

@@ -42,14 +42,20 @@
                                     <input type="number" class="small" name='cineman_number'>
                                   </div>
                                 </div>
-
+                                
+                                <div class="mws-form-row">
+                                  <label class="mws-form-label">设置影院最低价影片</label>
+                                  <div class="mws-form-item">
+                                    <input type="number" class="small" name='cineman_money'>
+                                  </div>
+                                </div>
                                 
                                  <div class="mws-form-row"> 
                                   <label class="mws-form-label">是否有特殊厅</label>
                                   <div class="mws-form-item">
                                             <ul class="mws-form-list inline">
                                                 <li><input name="cineman_gender" value="1" type="radio" > <label>有特殊厅</label></li>
-                                                <li><input name="cineman_gender" value="0" checked="" type="radio"> <label>没有特殊厅</label></li>
+                                                <li><input name="cineman_gender" value="0" checked="" type="radio" id="Tingg"> <label>没有特殊厅</label></li>
                                             </ul>
                                               
                                   </div>
@@ -114,24 +120,17 @@
                     	</form>
                     </div>    	
                 </div>
+
+@endsection
+@section('buttom')
 <script type="text/javascript">
   $(document).ready(function(){
   $("#Tingg").click(function(){
   $(this).hide();
   });
 });
-    // function show(){          
-    // alert(1);
-    // // $("#Tingg").removeAttr("display");
-    // function hiddenn(){
-    // alert(2);
-    // // $("#Tingg").attr("display","none");
-                                          
-    //  }
+    
 </script>
-@endsection
-@section('buttom')
-
    
 
 @endsection

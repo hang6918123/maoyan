@@ -347,6 +347,7 @@ val = {"id":1182552};    window.system = {"user":{"id":{{session('id')}},"token"
           <div class="celebrity-container" >
                 <div class="celebrity-group">
  <!--  <div class="celebrity-type">
+>>>>>>> be38cc6651baac4bf4b4bc894bef58982365bc22
     导演
       <span class="num">（1）</span>
   </div>
@@ -710,7 +711,7 @@ val = {"id":1182552};    window.system = {"user":{"id":{{session('id')}},"token"
     <div class="news-img">
       <a href="/news/one/{{$v['id']}}" target="_blank">
         <!-- <img class="news-img-default" src="/home/{{$v['poster']}}" /> -->
-        <img class="news-img-detail" data-src="/home/{{$v['poster']}}" style="width:140px;height: 86px;" />
+        <img class="news-img-detail" src="/uploads/news/{{$v['poster']}}" style="width:140px;height: 86px;" />
       </a>
     </div>
     <div class="news-main">
@@ -755,8 +756,6 @@ val = {"id":1182552};    window.system = {"user":{"id":{{session('id')}},"token"
 <div class="channel-detail channel-detail-orange"><i class="integer">8.</i><i class="fraction">0</i></div>
   
  -->
-
-
     </div>
   </div>
   </div>
@@ -773,15 +772,15 @@ val = {"id":1182552};    window.system = {"user":{"id":{{session('id')}},"token"
     <div class="score-star-contaienr">
       <ul class="score-star clearfix" data-score="" id="clearfix">
     <li>
-<i class="half-star left "></i><i class="half-star right "></i>    </li>
+<i class="half-star left "></i><i class="half-star right "></i></li>
     <li>
-<i class="half-star left "></i><i class="half-star right "></i>    </li>
+<i class="half-star left "></i><i class="half-star right "></i></li>
     <li>
-<i class="half-star left "></i><i class="half-star right "></i>    </li>
+<i class="half-star left "></i><i class="half-star right "></i></li>
     <li>
-<i class="half-star left "></i><i class="half-star right "></i>    </li>
+<i class="half-star left "></i><i class="half-star right "></i></li>
     <li>
-<i class="half-star left "></i><i class="half-star right "></i>    </li>
+<i class="half-star left "></i><i class="half-star right "></i></li>
 </ul>
 
     </div>

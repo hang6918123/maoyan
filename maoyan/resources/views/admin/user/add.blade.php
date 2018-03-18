@@ -7,7 +7,7 @@
 @section('main')
 <div class="mws-panel grid_4" style="left:20%;">
 	@if(session()->has('error'))
-        <div class="mws-form-message success">
+        <div class="mws-form-message error">
             <font style="vertical-align: inherit;">
                 {{session()->get('error')}}
             </font>

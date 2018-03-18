@@ -10,25 +10,71 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+//前台登录
 Route::controller('login','Home\LoginController');
 
+//前台登录中间件
 Route::group(['middleware'=>'homeLogin'],function(){
+	//前台用户中心
 	Route::controller('user','Home\UserController');
 });
+//前台资讯
+Route::controller('news','Home\NewsController');
+//前台路由主页
+Route::get('/','Home\IndexController@index');
 
-Route::controller('admin/user','Admin\UserController');
-Route::controller('admin/auth','Admin\AuthController');
-Route::resource('admin/news','Admin\NewsController');
+//---------------------------------------------------------------------------//
 
+//后台登录
+Route::controller('admin/login','Admin\LoginController');
 
-Route::controller('admin/cineman','admin\CinemanController');
-Route::controller('admin/movie','admin\MovieController');
-Route::controller('admin/carousel','admin\CarouselController');
+//后台登录中间件
+Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>['adminLogin','power']],function(){
+	// 后台主页路由
+	Route::resource('index', 'IndexController');
+	//后台用户
+	Route::controller('user','UserController');
+	//后台岗位权限
+	Route::controller('auth','AuthController');
+	//后台资讯
+	Route::resource('news','NewsController');
 
-// 后台主页路由
-Route::get('/admin/index', function () {
-    return view('admin/index');
+	Route::controller('cineman','CinemanController');
+
+	Route::controller('movie','MovieController');
+
+	Route::controller('carousel','CarouselController');
+	// 后台影片管理路由
+	Route::get('recycle/{id}','VideosController@recycle');
+
+	Route::post('dele/{id}','VideosController@dele');
+
+	Route::get('vshow','VideosController@vshow');
+
+	Route::get('showv/{id}','VideosController@showv');
+
+	Route::resource('video','VideosController');
+	//后台评价路由
+	Route::controller('score','ScoresController');
+	//后台订单路由
+	Route::controller('orders','OrdersController');
+	//后台友情链接
+	Route::resource('link','LinkController');
+	//后台网站配置
+	Route::resource('webconf','WebconfController');
 });
+
+
+Route::get('/cinemas/address','home\CinemasController@address');
+Route::get('/cinemas/seeks','home\CinemasController@seeks');
+Route::get('/cinemas/seekt','home\CinemasController@seekt');
+Route::get('/cinemas/seekte','home\CinemasController@seekte');
+Route::controller('/cinemas','home\CinemasController');
+
+
+
+
+
 // 前台影片路由
 Route::resource('/films','Home\VideosController');
 // 前台影片评论ajax
@@ -37,15 +83,3 @@ Route::controller('/film','Home\VideosController');
 Route::controller('/board','Home\BoardController');
 // 前台搜索
 Route::get('/query','Home\BoardController@query');
-// 后台影片管理路由
-Route::get('/admin/recycle/{id}','Admin\VideosController@recycle');
-Route::post('/admin/dele/{id}','Admin\VideosController@dele');
-Route::get('/admin/vshow','Admin\VideosController@vshow');
-Route::get('/admin/showv/{id}','Admin\VideosController@showv');
-Route::resource('/admin/video','Admin\VideosController');
-//后台评价路由
-Route::controller('/admin/score','Admin\ScoresController');
-//后台订单路由
-Route::controller('/admin/orders','Admin\OrdersController');
-//前台路由主页
-Route::controller('/','Home\IndexController');

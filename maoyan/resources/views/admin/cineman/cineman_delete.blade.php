@@ -20,6 +20,15 @@
                                     </ul>
                    </div>
                    @endif
+                   @if( session('mss'))
+                    <div class="mws-form-message error">
+                                  
+                                    <ul>
+                                       <li>{{ session('mss') }}</li>
+                                        
+                                    </ul>
+                   </div>
+                   @endif
 <div class="mws-panel grid_8">
                     <div class="mws-panel-header">
                         <span><i class="icon-table"></i>影院列表</span>

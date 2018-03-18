@@ -3,6 +3,29 @@
 <link rel="stylesheet" type="text/css" href="/admin/css/page_page.css">
 @endsection
 @section('main')
+@if (count($errors) > 0)
+     <div class="mws-form-message error">
+         <ul>
+             @foreach ($errors->all() as $error)
+                 <li>{{ $error }}</li>
+             @endforeach
+         </ul>
+     </div>
+@endif
+@if(session('serror'))
+     <div class="mws-form-message error">
+            <ul>
+               <li>{{session('serror')}}</li>
+            </ul>
+     </div>
+@endif
+@if(session('success'))
+   <div class="mws-form-message success">
+       <ol>
+           <li>{{session('success')}}</li>
+       </ol>
+   </div>
+@endif
 <div class="mws-panel grid_8">
                 	<div class="mws-panel-header">
                     	<span><i class="icon-table"></i>影片列表</span>
@@ -52,7 +75,7 @@
                                 @endforeach
                         </table><div class="dataTables_paginate paging_full_numbers" id="DataTables_Table_1_paginate">
                             <div id="page_page">
-                            <!-- {!! $data->render() !!} -->
+                            {!! $data->render() !!}
                             </div>
                         </div>
 

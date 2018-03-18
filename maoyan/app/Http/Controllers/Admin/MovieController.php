@@ -47,7 +47,6 @@ class MovieController extends Controller
      {	
      	$input = $request->all();
     	
-     	dd($input);
 
     	if(intval($input['movie_name'])){
     		$movies = Cinemas::find($input['movie_name']);
