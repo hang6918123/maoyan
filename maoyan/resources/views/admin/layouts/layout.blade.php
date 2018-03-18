@@ -8,7 +8,7 @@
 
 <!-- Viewport Metatag -->
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-
+<meta name="csrf-token" content="{{ csrf_token() }}">
 <!-- Plugin Stylesheets first to ease overrides -->
 <link rel="stylesheet" type="text/css" href="/admin/plugins/colorpicker/colorpicker.css" media="screen">
 <link rel="stylesheet" href="/admin/plugins/plupload/jquery.plupload.queue.css" media="screen">
@@ -33,7 +33,7 @@
 <!-- Theme Stylesheet -->
 <link rel="stylesheet" type="text/css" href="/admin/css/mws-theme.css" media="screen">
 <link rel="stylesheet" type="text/css" href="/admin/css/themer.css" media="screen">
-
+<script src="/home/js/jquery-3.3.1.min.js"></script>
 <title>MWS Admin - Files</title>
 
 </head>
@@ -98,15 +98,15 @@
                     <li>
                         <a href="#"><i class="icon-user"></i>用户管理</a>
                         <ul class="closed">
-                            <li><a href="form_layouts.html">用户列表</a></li>
-                            <li><a href="form_elements.html">添加用户</a></li>
+                            <li><a href="/admin/user">用户列表</a></li>
+                            <li><a href="/admin/user/create">添加用户</a></li>
+                            <li><a href="/admin/auth">岗位权限</a></li>
                         </ul>
                     </li>
                     <li>
                         <a href="#"><i class="icon-file"></i>订单管理</a>
                         <ul class="closed">
-                            <li><a href="form_layouts.html">订单列表</a></li>
-                            <li><a href="form_elements.html">查询订单</a></li>
+                            <li><a href="/admin/orders">订单列表</a></li>
                         </ul>
                     </li>
                     <li>
@@ -121,18 +121,16 @@
                     <li>
                         <a href="#"><i class="icon-home"></i>影厅管理</a>
                         <ul class="closed">
-                            
                             <li><a href="/admin/movie">电影上架</a></li>
                             <li><a href="/admin/movie/delete">电影下架</a></li>
-                            <li><a href="/admin/movie/edit">座位管理</a></li>
-                            <li><a href="/admin/movie/delete">删除影厅</a></li>
                         </ul>
                     </li>
                     <li>
                         <a href="#"><i class="icon-facetime-video"></i>影片管理</a>
                         <ul class="closed">
-                            <li><a href="/admin/video/list">影片列表</a></li>
-                            <li><a href="form_elements.html">添加影片</a></li>
+                            <li><a href="/admin/video/create">添加影片</a></li>
+                            <li><a href="/admin/video">影片列表</a></li>
+                            <li><a href="/admin/vshow">影片回收站</a></li>
                         </ul>
                     </li>
                     <li>
@@ -145,8 +143,8 @@
                     <li>
                         <a href="#"><i class="icon-bullhorn"></i>资讯管理</a>
                         <ul class="closed">
-                            <li><a href="form_layouts.html">资讯列表</a></li>
-                            <li><a href="form_elements.html">添加资讯</a></li>
+                            <li><a href="/admin/news">资讯列表</a></li>
+                            <li><a href="/admin/news/create">添加资讯</a></li>
                         </ul>
                     </li>
                     <li>

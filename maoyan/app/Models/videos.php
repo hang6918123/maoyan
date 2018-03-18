@@ -13,9 +13,14 @@ class videos extends Model
     
     //影片表对应评价表 一对多关系
     public function videoscore(){
-    	$this->hasMany('App\Models\videoscore','uid');
+
+    	return $this->hasMany('App\Models\videoscore','uid');
+    }
+    
+
+     public function usv()
+    {
+        return $this->belongsToMany('App\Models\videoscore','videoscore','vid','uid');
     }
 
-    
-    
 }

@@ -6,7 +6,9 @@
     "type": "project",
     "require": {
         "php": ">=5.5.9",
-        "laravel/framework": "5.1.*"
+        "laravel/framework": "5.1.*",
+        "toplan/laravel-sms": "~2.6",
+        "predis/predis": "1.0.*"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
@@ -24,7 +26,12 @@
         },
         "files":[
         "app/library/cineman_3.php",
-        "app/library/Upload.php"
+        "app/library/helper.php",
+        "app/library/Upload.php",
+        "app/Library/cinemas_exist.php",
+        "app/Library/cinema_seek.php",
+        "app/Library/cinema_2d.php"
+
     ]
     },
     "autoload-dev": {

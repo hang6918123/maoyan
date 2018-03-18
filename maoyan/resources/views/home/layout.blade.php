@@ -38,11 +38,15 @@
             </div>
             <div class="city-list" data-val="{ localcityid: 1 }">
                 <div class="city-list-header">定位城市：<a class="js-geo-city">北京</a></div>
-                
+                <ul>
+                    <li>
+                        <div>
+                          <a class="js-city-name" href="/{{Request::path()}}">阿拉善盟</a>
+                        </div>
+                    </li>
+                </ul>
             </div>
         </div>
-
-
         <div class="nav">
             <ul class="navbar">
                 <li><a href="/" data-act="home-click"  class="active"  >首页</a></li>
@@ -119,5 +123,17 @@
 </div>
 </body>
 </html>
+<script src="/public/js/jquery-3.3.1.min.js"></script>
+<script>
+    $('.city-container').on({
+        mouseover: function(){
+            $(this).attr('class','city-container active');
+        },
+        mouseout: function(){
+             $(this).attr('class','city-container');
+        }
+    });
+</script>
 @section('js')
+
 @show

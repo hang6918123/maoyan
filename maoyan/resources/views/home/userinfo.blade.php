@@ -1,5 +1,6 @@
 @extends('home.layout')
 
+
 @section('title')
 用户中心
 @endsection
@@ -58,7 +59,6 @@
 @endsection
 
 @section('js')
-<script src="/public/js/jquery-3.3.1.min.js"></script>
 <script>
 	$(function () {
         $("#fileUpload").change(function () {

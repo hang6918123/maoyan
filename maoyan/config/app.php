@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'debug' => env('APP_DEBUG', false),
+    'debug' => env('APP_DEBUG', true),
 
     /*
     |--------------------------------------------------------------------------
@@ -27,6 +27,7 @@ return [
     */
 
     'url' => 'http://localhost',
+    'title'=> '后台首页',
 
     /*
     |--------------------------------------------------------------------------
@@ -146,6 +147,9 @@ return [
         App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        Toplan\PhpSms\PhpSmsServiceProvider::class,
+		Toplan\Sms\SmsManagerServiceProvider::class,
+
 
     ],
 
@@ -194,6 +198,8 @@ return [
         'URL'       => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
+        'PhpSms' => Toplan\PhpSms\Facades\Sms::class,
+		'SmsManager' => Toplan\Sms\Facades\SmsManager::class,
 
     ],
 

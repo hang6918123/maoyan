@@ -56,9 +56,7 @@
 					</div>
 
 					<div class="form-field form-field--auto-login cf">
-						<a href="javascript:;" class="forget-password">忘记密码？</a>
-						<input type="checkbox" value="1"  name="auto_login" id="mobile-autologin" class="f-check " />
-						<label class="normal" for="mobile-autologin">7天内自动登录</label>
+
 					</div>
 					<div class="form-field form-field--ops">
 						<input type="submit" class="btn" name="commit" value="登录" />

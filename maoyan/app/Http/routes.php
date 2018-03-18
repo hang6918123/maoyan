@@ -10,35 +10,41 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+Route::controller('login','Home\LoginController');
 
-Route::get('/', function () {
-    return view('home/index');
+Route::group(['middleware'=>'homeLogin'],function(){
+	Route::controller('user','Home\UserController');
 });
-Route::get('/films', function () {
-    return view('home/films');
-});
-Route::get('/cinemas', function () {
-    return view('home/cinemas');
-});
-Route::get('/board', function () {
-    return view('home/board');
-});
-Route::get('/news', function () {
-    return view('home/news');
-});
-Route::get('/login', function () {
-    return view('home/login');
-});
-Route::get('/admin/index', function () {
-    return view('admin/index');
-});
-Route::get('/admin/video/list', function () {
-    return view('admin/vlist');
-});
-Route::get('/admin/video/info', function () {
-    return view('admin/vinfo');
-});
+
+Route::controller('admin/user','Admin\UserController');
+Route::controller('admin/auth','Admin\AuthController');
+Route::resource('admin/news','Admin\NewsController');
+
 
 Route::controller('admin/cineman','admin\CinemanController');
 Route::controller('admin/movie','admin\MovieController');
 Route::controller('admin/carousel','admin\CarouselController');
+Route::get('/cinemas/address','home\CinemasController@address');
+Route::get('/cinemas/seeks','home\CinemasController@seeks');
+Route::get('/cinemas/seekt','home\CinemasController@seekt');
+Route::get('/cinemas/seekte','home\CinemasController@seekte');
+Route::controller('/cinemas','home\CinemasController');
+
+// 后台主页路由
+Route::get('/admin/index', function () {
+    return view('admin/index');
+});
+// 前台影片路由
+Route::resource('/films','Home\VideosController');
+// 后台影片管理路由
+Route::get('/admin/recycle/{id}','Admin\VideosController@recycle');
+Route::post('/admin/dele/{id}','Admin\VideosController@dele');
+Route::get('/admin/vshow','Admin\VideosController@vshow');
+Route::get('/admin/showv/{id}','Admin\VideosController@showv');
+Route::resource('/admin/video','Admin\VideosController');
+//后台评价路由
+Route::controller('/admin/score','Admin\ScoresController');
+//后台订单路由
+Route::controller('/admin/orders','Admin\OrdersController');
+//前台路由主页
+Route::controller('/','Home\IndexController');
