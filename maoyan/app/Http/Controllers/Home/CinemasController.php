@@ -167,12 +167,12 @@ class CinemasController extends Controller
             $array[] = cut_str($shouchu,'#',$i);
 
         }
-        $arrayy = json_encode($array);
+        // $arrayy = json_encode($array);
         // dd($arrayy);
         // var_dump($arrayy);
         // dd();
         session(['moviee'=>$movie,'cinemaa'=>$cinema,'videoo'=>$video]);
-        return view('\home\writ',['movie'=>$movie,'cinema'=>$cinema,'video'=>$video,'arrayy'=>$arrayy]);
+        return view('\home\writ',['movie'=>$movie,'cinema'=>$cinema,'video'=>$video,'array'=>$array]);
     }
     //生成订单
     public function getOrders(Request $request)

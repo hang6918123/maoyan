@@ -228,9 +228,9 @@
                 });
 
                 //设置已售出的座位
-               
+              var bb =  eval( {!! json_encode($array) !!} );
                 
-              var bb = JSON.parse({{$arrayy}});
+              // var bb = ['1_3', '1_4', '4_4', '4_5', '4_6', '4_7', '4_8'];
 
                sc.get(bb).status('unavailable');
 
@@ -265,7 +265,7 @@
                 $.get('/cinemas/orders',{'map_id':map_arr.join('#')},function(msg){
                     if(msg == 'ok'){
                         alert('下单成功');
-                        getMap();
+                        location.reload();
                     } else{
                         alert(msg);
                     }
